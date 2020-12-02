@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>5-3</title>
+    <title>5-4</title>
 </head>
 <body>
 <script>
@@ -75,11 +75,18 @@
     }
 
 
+    // Proxy-handler
+    const handler = {
+        get: function( target, thisArg ) {
+            console.log("hallo");
+            return target.topSort();
+        }
+    }
 
     const vorrang = new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen", "essen"] ]);
+    const proxy = new Proxy(vorrang,handler);
 
-
-    let myIterator = vorrang[Symbol.iterator]();
+    let myIterator = proxy[Symbol.iterator]();
     console.assert('{"value":"schlafen","done":false}' === JSON.stringify(myIterator.next()));
     console.assert('{"value":"essen","done":false}' === JSON.stringify(myIterator.next()));
     console.assert('{"value":"studieren","done":false}' === JSON.stringify(myIterator.next()));
