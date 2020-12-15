@@ -1,13 +1,63 @@
+
+let currentSpeaker = 0;
+let allSpeakerTimes = [0];
+let interval = setInterval(function () {
+    if(allSpeakerTimes.length > 1){
+        allSpeakerTimes[currentSpeaker] += 1;
+        let mytime = document.getElementById(String("0"+currentSpeaker));
+        mytime.innerHTML = changeTimeFormat(allSpeakerTimes[currentSpeaker]);
+    }
+}, 1000);
+
+
+
 const button = document.getElementById('hinzufuegen');
 button.addEventListener('click', function (event) {
+
     let redner = document.getElementById('redner').value;
-    console.log(redner);
+
     if( redner !== ""){
-        var entry = document.createElement('li');
-        entry.textContent = redner;
+        let newIndex = allSpeakerTimes.length;
+
+        let entry = document.createElement('li');
+        entry.innerHTML = redner +' <p id='+ String("0"+newIndex)+'>00:00:00</p> <button id='+String(newIndex)+' onclick="startTime('+newIndex+')" class="buttons">Stop</button>';
         let list = document.getElementById('redner-list');
         list.appendChild(entry);
+
+        allSpeakerTimes[newIndex] = 0;
+        startTime(newIndex);
     }
 
 
 });
+
+
+function changeTimeFormat(seconds) {
+    let s = seconds%60;
+    let m = Math.floor(seconds/60)%60;
+    let h = Math.floor(Math.floor(seconds/60)/60);
+    return ' '+String(h).padStart(2,"0")+':'+String(m).padStart(2,"0")+':'+String(s).padStart(2,"0");
+}
+
+function startTime(index) {
+    currentSpeaker = index;
+    [...document.getElementsByClassName("buttons")].forEach(function (b) {
+        if(b.id !== String(currentSpeaker)){
+            b.innerHTML = "Start!";
+            b.onclick = () => startTime(b.id);
+        } else {
+            b.innerHTML = "Stopp!";
+            b.onclick = () => stopTime();
+        }
+    });
+}
+
+function stopTime() {
+    currentSpeaker = 0;
+    [...document.getElementsByClassName("buttons")].forEach(function (b) {
+        if(b.id !== String(currentSpeaker)){
+            b.innerHTML = "Start!";
+            b.onclick = () => startTime(b.id);
+        }
+    });
+}
