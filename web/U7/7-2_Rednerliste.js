@@ -1,6 +1,8 @@
 
 let currentSpeaker = 0;
 let allSpeakerTimes = [0];
+// setze intervall: jede sekunde wird die callback function ausgeführt und incrementiert die Zeit eines Redners
+// oder des leerlaufs bei currentspeaker = 0
 let interval = setInterval(function () {
     if(allSpeakerTimes.length > 1){
         allSpeakerTimes[currentSpeaker] += 1;
@@ -10,7 +12,7 @@ let interval = setInterval(function () {
 }, 1000);
 
 
-
+// eventlistener für den hinzufügen button
 const button = document.getElementById('hinzufuegen');
 button.addEventListener('click', function (event) {
 
