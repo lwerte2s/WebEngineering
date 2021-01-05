@@ -12,12 +12,23 @@
 
     async function fetchData(url){
         const request = await fetch(url);
-        return  await request.text();
+        return  await request.json();
     }
 
     async function display(){
-        const data = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/A");
-        document.getElementById("text").innerHTML = data;
+        const dataA = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/A");
+        const dataB = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/B");
+
+        let i = 1;
+        while( true ){
+            if (dataA[i]){
+                document.getElementById("text").innerHTML = document.getElementById("text").innerHTML + dataA[i] + dataB[i] + "\n";
+                i++;
+            } else {
+                break;
+            }
+
+        }
     }
 
 
