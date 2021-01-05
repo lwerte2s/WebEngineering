@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Performanzmessungen</title>
+    <style>
+        table {
+            background-color: palegreen;
+            border-collapse: collapse;
+        }
+        th, tr, td {
+            border: 2px solid black;
+            padding: 3px 6px ;
+        }
+    </style>
+</head>
+<body>
+    <h1>Performancemessungen</h1>
+    <button onclick="measureInnerHTML()">innerHTML</button>
+    <button onclick="measureInnerText()">innerText</button>
+    <button onclick="measureTextContent()">textContent</button>
+    <button onclick="measureOuterHTML()">outerHTML</button>
+    <button onclick="alle()">Alle</button>
+
+    <table>
+        <tr>
+            <th>innerHTML</th>
+            <th>innerText</th>
+            <th>textContent</th>
+            <th>outerHTML</th>
+        </tr>
+        <tr>
+            <td id="innerHTML">0</td>
+            <td id="innerText">0</td>
+            <td id="textContent">0</td>
+            <td id="outerHTML">0</td>
+        </tr>
+
+    </table>
+
+    <script>
+        function measureInnerHTML() {
+           let tableData = document.getElementById("innerHTML");
+           const a = performance.now();
+           tableData.innerHTML = "Test";
+           const b = performance.now();
+           tableData.innerHTML = String(b-a);
+
+        }
+
+        function measureInnerText() {
+            let tableData = document.getElementById("innerText");
+            const a = performance.now();
+            tableData.innerText = "Test";
+            const b = performance.now();
+            tableData.innerText = String(b-a);
+
+        }
+
+        function measureTextContent() {
+            let tableData = document.getElementById("textContent");
+            const a = performance.now();
+            tableData.textContent = "Test";
+            const b = performance.now();
+            tableData.textContent = String(b-a);
+
+        }
+
+        function measureOuterHTML() {
+            let tableData = document.getElementById("outerHTML");
+            const a = performance.now();
+            tableData.outerHTML = '<td id="outerHTML">"Test"</td>';
+            const b = performance.now();
+            document.getElementById("outerHTML").innerHTML = String(b-a);
+        }
+
+        function alle() {
+            measureInnerHTML();
+            measureInnerText();
+            measureTextContent();
+            measureOuterHTML();
+        }
+    </script>
+</body>
+</html>
