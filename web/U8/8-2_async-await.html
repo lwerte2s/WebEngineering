@@ -12,12 +12,17 @@
 <script>
 
     async function fetchData(url){
-        const request = await fetch(url);
-        return  await request.text();
+        try{
+            const request = await fetch(url);
+            return  await request.json();
+        } catch(e){
+            console.log(e);
+        }
+
     }
 
     async function display(){
-        const dataA = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/A");
+        const dataA = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/A.json");
         //const dataB = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/B");
 
         document.getElementById("text").innerHTML = dataA;

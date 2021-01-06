@@ -1,5 +1,5 @@
 {
-1:"Erstellen Sie auf Ihrem Server www2.inf.h-brs.de (oder localhost) zwei Text-Dateien"
-2:"Laden Sie mit der fetch-API parallel"
-3:"Geben Sie auf einer Webseite den Inhalt beider Dateien zeilenweise aus,"
+"1":"Erstellen Sie auf Ihrem Server www2.inf.h-brs.de (oder localhost) zwei Text-Dateien"
+"2":"Laden Sie mit der fetch-API parallel"
+"3":"Geben Sie auf einer Webseite den Inhalt beider Dateien zeilenweise aus,"
 }
