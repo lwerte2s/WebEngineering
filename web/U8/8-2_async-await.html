@@ -7,18 +7,23 @@
 <body>
 
 <p id="text"></p>
+<p id="text2"></p>
 
 <script>
 
     async function fetchData(url){
         const request = await fetch(url);
-        return  await request.json();
+        return  await request.text();
     }
 
     async function display(){
         const dataA = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/A");
-        const dataB = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/B");
+        //const dataB = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/B");
 
+        document.getElementById("text").innerHTML = dataA;
+        //document.getElementById("text2").innerHTML = dataB;
+
+/*
         let i = 1;
         while( true ){
             if (dataA[i]){
@@ -29,6 +34,8 @@
             }
 
         }
+
+ */
     }
 
 
