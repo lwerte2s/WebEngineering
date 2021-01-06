@@ -12,12 +12,9 @@
 <script>
 
     async function fetchData(url){
-        try{
             const request = await fetch(url);
             return  await request.json();
-        } catch(e){
-            console.log(e);
-        }
+
 
     }
 
