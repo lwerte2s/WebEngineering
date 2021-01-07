@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WWW-Navigator</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .site {
+            height: 100%;
+            margin: 0;
+            display: grid;
+            height: 100%;
+            grid-template-areas:
+                    'header'
+                    'navibar'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right';
+        }
+
+
+
+        .header h1 {
+            font-family: "Calibri Light";
+            font-size: 30px;
+            text-align: center;
+            grid-area: header;
+
+        }
+
+        #top .navibar {
+            border: none;
+            padding: 0px;
+            width: 100%;
+            background-color: #2a3345;
+            grid-area: navibar;
+        }
+
+        .navibar .button {
+            color: white;
+            background-color: rgb(35, 39, 47);
+
+            text-align: center;
+            font-size: 2vh;
+            padding: 2vh 1vw;
+            border: none;
+            grid-row: 1
+        }
+
+        #mid {
+            display: grid;
+            height: 75%;
+            grid-template-areas: 'left mid mid mid mid mid right';
+        }
+
+        #mid .leftcolumn {
+            background-color: #535b6b;
+            grid-area: left;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        #mid .middlecolumn {
+            width: 100%;
+            grid-area: mid;
+            border: 2px solid brown;
+        }
+
+        #mid .rightcolumn {
+            background-color: #535b6b;
+            width: 100%;
+            grid-area: right;
+            height: 100px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class = site>
+
+
+
+<div id="top">
+    <div class="header">
+        <h1>WWW-Navigator</h1>
+    </div>
+
+    <div class="navibar">
+        <button class="button">HTML</button>
+        <button class="button">CSS</button>
+        <button class="button">JavaScript</button>
+    </div>
+</div>
+
+<div id="mid">
+    <div class="leftcolumn">
+        <button class="button">JavaScript</button>
+    </div>
+    <div class="middlecolumn">
+
+    </div>
+    <div class="rightcolumn">
+        <button class="button">JavaScript</button>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
