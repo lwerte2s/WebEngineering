@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>9.2</title>
+</head>
+<body>
+
+<div id="menu">
+    <button
+            v-for="tab in tabs"
+            v-bind:key="tab"
+            v-bind:class="['tab-button',{active: currentTab === tab}]"
+            v-on:click="currentTab=tab"
+    >{{tab}}</button>
+
+    <component
+            v-bind:is="currentTabComponent"
+            class="tab" ></component>
+
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<div id="app">
+    <menu></menu>
+</div>
+
+<script type="module" src="./app.js"></script>
+
+</body>
+</html>
