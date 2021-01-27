@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>U4-2</title>
+</head>
+<body>
+
+<h1 id="fibo"></h1>
+
+<script>
+
+    var i = 0;
+
+    function fibonacci(num, alreadyCalculated) {
+        alreadyCalculated = alreadyCalculated || {};
+
+
+        if (alreadyCalculated[num]) return alreadyCalculated[num];
+        if (num <= 1) {
+            alreadyCalculated[num] = 1;
+            i = i+1;
+            console.log("1 number:" + i);
+            return 1;
+        }
+
+        var fib = BigInt(fibonacci(num - 1, alreadyCalculated)) + BigInt(fibonacci(num - 2, alreadyCalculated));
+        alreadyCalculated[num] = fib;
+        i = i+1;
+        console.log(fib +" number:"+ i);
+        if(fib > 9007199254740991){
+            console.log("here")
+        }
+        return fib;
+    }
+
+
+    document.getElementById("fibo").innerHTML = fibonacci(2000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>8.1</title>
+</head>
+<body>
+
+<p id="text"></p>
+
+<script>
+
+    function fetchData(url){
+        return fetch(url).then( x => x.json());
+    }
+
+    Promise.all([
+         fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/A.json"),
+         fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/B")
+    ]).then( resultarray => {
+        let i = 1;
+        while( true ){
+            if (resultarray[0][i]){
+                const p = document.createElement("p");
+                p.innerHTML = resultarray[0][i] + `<span style="color:#b1151a"> ${resultarray[1][i]} </span>`;
+                document.getElementById("text").appendChild(p);
+                i++;
+            } else {
+                break;
+            }
+        }
+    });
+
+
+
+</script>
+</body>
+</html>

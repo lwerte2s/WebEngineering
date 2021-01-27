@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Komponente in vue.js</title>
+</head>
+<body>
+
+<div id="app">
+    <h1> Test {{title}}</h1>
+    <my-component></my-component>
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    Vue.component('my-component', {
+        probs:['mytext', 'words', 'spaces' ],
+        template: '<div><textarea v-model="mytext"></textarea>'+
+           '<p>Anzahl der Wörter: {{count(mytext)[0]}}</p>'+
+           '<p>Anzahl der Buchstaben: {{count(mytext)[1]}}</p>'+
+           '<p>Anzahl der  Leerzeichen: {{count(mytext)[2]}}</p></div>',
+        data: function (){ return {mytext: ""}},
+        methods: { count(){
+                let words = this.mytext.split(/\s+/);
+                let woerter = 0;
+                if (words[words.length-1] === ""){
+                    woerter = words.length-1;
+                } else {
+                    woerter = words.length;
+                }
+                console.log(words);
+                const lengthText = words.join("").length
+                return [woerter, lengthText, this.mytext.length-lengthText]
+
+            }
+        }
+    });
+
+    const myapp = new Vue({
+       el: '#app',
+       data:{ title: "hello world"}
+    });
+
+</script>
+
+</body>
+</html>

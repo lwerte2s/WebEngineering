@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+    class Vorrang{
+        constructor(abhaengigkeiten) {
+            this._dependencies = abhaengigkeiten;
+        }
+
+        get dependencies() {
+            return this._dependencies;
+        }
+
+        set addDependencie(dependency) {
+            this._dependencies.push(dependency);
+        }
+
+        topSort()  {
+
+            var indeg = this.getIndegrees();
+            var sortierung = [];
+
+
+            while ( Object.entries(indeg).length > 0){
+                let entry = Object.entries(indeg);
+                for (let i=entry.length-1; i>=0; i--){
+                    if( entry[i][1] === 0 ){
+
+                        sortierung.push(entry[i][0]);
+                        this._dependencies.forEach( element => {
+                            if(element[0] === entry[i][0]) {
+                                if(indeg[element[1]]) {
+                                    indeg[ element[1] ]--;
+                                }
+                            }
+                        });
+                        delete indeg[entry[i][0]];
+                    }
+                }
+
+            }
+            return sortierung;
+
+        }
+
+
+        getIndegrees() {
+            var indegrees = {};
+            for(let i=0 ; i < this._dependencies.length; i++){
+                if(!(indegrees.hasOwnProperty(this._dependencies[i][0]))){
+                    indegrees[this._dependencies[i][0]] = 0;
+                }
+                if(indegrees.hasOwnProperty(this._dependencies[i][1])){
+                    indegrees[this._dependencies[i][1]] ++;
+                } else {
+                    indegrees[this._dependencies[i][1]] = 1;
+                }
+            }
+            return indegrees;
+        }
+
+
+        [Symbol.iterator](){
+            const values = this.topSort();
+            let i = 0;
+            return {
+                next() {
+                    return {
+                        value: values[i++],
+                        done: i > values.length
+                    }
+                }
+            }
+        }
+
+    }
+
+
+
+    const vorrang = new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen", "essen"] ]);
+
+    let myIterator = vorrang[Symbol.iterator]();
+    console.assert('{"value":"schlafen","done":false}' === JSON.stringify(myIterator.next()));
+    console.assert('{"value":"essen","done":false}' === JSON.stringify(myIterator.next()));
+    console.assert('{"value":"studieren","done":false}' === JSON.stringify(myIterator.next()));
+    console.assert('{"value":"prüfen","done":false}' === JSON.stringify(myIterator.next()));
+    console.assert('{"done":true}' === JSON.stringify(myIterator.next()));
+
+
+
+    for( const x of vorrang){
+        console.log(x);
+    }
+
+
+
+</script>
+
+</body>
+</html>
