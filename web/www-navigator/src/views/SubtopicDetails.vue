@@ -2,7 +2,9 @@
     <section>
         <div class="subtopic-details">
             <h2 class="h2">{{subtopic.name}}</h2>
-            <p>{{subtopic.content}}</p>
+            <div class="borders">
+                <p>{{subtopic.content}}</p>
+            </div>
             <div class="references">
                 <h1>References</h1>
                 <div  v-for="reference in subtopic.references" :key="reference">
@@ -44,12 +46,6 @@ export default {
 
 <style scoped>
 
-.subtopic-details img {
-    max-width: 500px;
-    height: auto;
-    width: 100%;
-    max-height: 400px;
-}
 
 .subtopic-details {
     display: flex;
@@ -58,17 +54,16 @@ export default {
 }
 
 p {
-    margin: 0 40px;
     font-size: 20px;
     text-align: left;
+    padding: 10px;
+
 }
 
 .references {
     position: relative;
     bottom: 10px;
-    padding-left: 10px;
-    border-left: 2px solid gray;
-    height: 1000px;
+    padding-left: 10px; 
 }
 
 .h2 {
@@ -76,9 +71,13 @@ p {
     bottom: 30px;
     padding-right: 10px;
     padding-top: 20px;
-    border-right: 2px solid gray;;
 }
 
+.borders {
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    min-height: 70vh;
+}
 
 
 </style>

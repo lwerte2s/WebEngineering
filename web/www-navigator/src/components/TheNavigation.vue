@@ -20,6 +20,12 @@
         </router-link>
       </li>
     </ul>
+    
+        <router-link class="user" :to="{name: 'user'}">
+          Account  
+        </router-link>
+
+     
   </nav>
 </template>
 
@@ -34,8 +40,14 @@ export default {
   methods: {
     toHome() {
       this.$router.push("/")
-  },
   }
+  },
+  computed: {
+    logedIn(){
+      return data.user !== null;
+    },
+  }
+  
 };
 </script>
 
@@ -50,6 +62,7 @@ export default {
   background-color: white;
   border-bottom: 1px solid gray;
   z-index: 1;
+  width: 100%;
 }
 
 #nav a {
@@ -74,6 +87,12 @@ export default {
 .links:hover {
   text-decoration: underline;
 }
+
+.user {
+  position: absolute;
+  right: 10px;
+}
+
 
 #logo {
   font-size: 20px;
