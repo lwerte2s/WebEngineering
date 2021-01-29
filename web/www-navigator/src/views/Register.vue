@@ -1,0 +1,44 @@
+<template>
+    <div class="login">
+        <h1>Register</h1>
+        <div class="form">
+            <label for="username">Username</label>
+            <input v-model="username" type="text" name="username" class="input"/>
+            <label for="password">Password</label>
+            <input v-model="password" type="password" class="input"/>
+            <button @click="login" class="btn">Login</button>
+        </div>
+        <p>Already registered? <router-link :to="{name: 'login'}"> Sign up now.</router-link></p>
+    </div>
+</template>
+
+<script>
+import data from "@/wwwdata.js"
+export default {
+    data(){
+        return{
+            username: null,
+            password: null,
+        }
+    },
+    methods: {
+        login(){
+            //Authenticate User
+            data.user = this.username;
+            //this.$router.push("/");
+            const redirectPath = this.$route.query.redirect || '/';
+            this.$router.push(redirectPath);
+        }
+    }
+}
+</script>
+
+<style scoped>
+
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+}
+</style>
