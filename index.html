@@ -1,1 +1,188 @@
-<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/favicon.ico"><title>www-navigator</title><link href="/css/SubtopicDetails.e45ee855.css" rel="prefetch"><link href="/css/TopicDetails.cc9fb6aa.css" rel="prefetch"><link href="/css/login.98562baf.css" rel="prefetch"><link href="/css/register.215b98d9.css" rel="prefetch"><link href="/js/SubtopicDetails.f7bcc22f.js" rel="prefetch"><link href="/js/TopicDetails.c284d9ba.js" rel="prefetch"><link href="/js/login.96d1806f.js" rel="prefetch"><link href="/js/notFound.ea25306c.js" rel="prefetch"><link href="/js/register.96164074.js" rel="prefetch"><link href="/js/user.43d834e9.js" rel="prefetch"><link href="/css/app.292f851d.css" rel="preload" as="style"><link href="/js/app.36542281.js" rel="preload" as="script"><link href="/js/chunk-vendors.e42aba95.js" rel="preload" as="script"><link href="/css/app.292f851d.css" rel="stylesheet"></head><body><noscript><strong>We're sorry but www-navigator doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id="app"></div><script src="/js/chunk-vendors.e42aba95.js"></script><script src="/js/app.36542281.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WWW-Navigator</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .site {
+            height: 100%;
+            margin: 0;
+            display: grid;
+            height: 100%;
+            grid-template-areas:
+                    'header'
+                    'navibar'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right'
+                    'left mid mid mid mid mid right';
+        }
+
+
+
+        .header h1 {
+            font-family: "Calibri Light";
+            font-size: 30px;
+            text-align: center;
+            grid-area: header;
+
+        }
+
+        #top .navibar {
+            border: none;
+            padding: 0px;
+            width: 100%;
+            background-color: #2a3345;
+            grid-area: navibar;
+        }
+
+        .navibar .button {
+            color: white;
+            background-color: rgb(35, 39, 47);
+
+            text-align: center;
+            font-size: 2vh;
+            padding: 2vh 1vw;
+            border: none;
+            grid-row: 1
+        }
+
+        #mid {
+            display: grid;
+            height: 100%;
+            grid-template-areas: 'left mid right';
+        }
+
+        #mid .leftcolumn {
+            background-color: #535b6b;
+            grid-area: left;
+            width: 10vw;
+            height: 80vh;
+        }
+
+        #mid .middlecolumn {
+            grid-area: mid;
+            border: 2px solid brown;
+            width: 79vw;
+            font-size: 30px;
+        }
+
+        #mid .rightcolumn {
+            background-color: #535b6b;
+            grid-area: right;
+            width: 10vw;
+            overflow: hidden;
+        }
+
+        .leftcolumn button {
+            color: white;
+            background-color: rgb(35, 39, 47);
+
+            text-align: center;
+            font-size: 2vh;
+            padding: 2vh 1vw;
+            border: none;
+            width: 100%;
+        }
+
+        .rightcolumn a {
+            font-size: 20px;
+            color: aliceblue;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+<div class = site>
+
+
+
+    <div id="top">
+        <div class="header">
+            <h1>WWW-Navigator</h1>
+        </div>
+
+        <div class="navibar">
+            <button id="html" class="button">HTML</button>
+            <button id="css" class="button">CSS</button>
+            <button id="js" class="button">JavaScript</button>
+        </div>
+    </div>
+
+    <div id="mid">
+        <div id="sidenav" class="leftcolumn"></div>
+
+        <div id="content" class="middlecolumn"></div>
+
+        <p class="rightcolumn">Additional Information:Links to external Ressources</p>
+        <div id="references" class="rightcolumn"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+
+    async function fetchData(url){
+        const request = await fetch(url);
+        return  await request.json();
+    }
+
+
+    async function generateButtons(title) {
+        let data = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/navigatorData");
+        console.log(data[title]);
+
+        document.getElementById("sidenav").innerText = "";
+        for( const [key,value] of Object.entries(data[title])){
+            //create buttons for sidenavigation
+            let div = document.createElement('div');
+            let button = document.createElement('button');
+            div.appendChild(button);
+            button.addEventListener("click", () =>{generateContent(value) });
+            button.innerText = key;
+            button.id = key;
+            document.getElementById("sidenav").appendChild(div);
+        }
+    }
+
+
+    function generateContent(subtitle){
+        //create content
+        console.log(subtitle);
+        document.getElementById("content").innerText = subtitle["content"];
+        //create references
+        document.getElementById("references").innerText = "";
+        let div = document.createElement('div');
+        document.getElementById("references").appendChild(div);
+        let link = document.createElement('a');
+        link.innerText = subtitle["references"];
+        link.href = subtitle["references"];
+        div.appendChild(link);
+    }
+
+    document.getElementById("html").addEventListener("click", () =>{generateButtons("html") });
+    document.getElementById("css").addEventListener("click", () =>{generateButtons("css") });
+    document.getElementById("js").addEventListener("click", () =>{generateButtons("javascript") });
+
+
+
+</script>
+</body>
+</html>
