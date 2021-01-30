@@ -5,11 +5,30 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Login:</h1>
+<h1>WebEngineering</h1>
+
+<div class="content" id="content">
+</div>
+<button  id="link">Click.</button>
 
 
+<script>
+const link = document.getElementById("link");
+link.addEventListener('click', display);
 
-<p>No account jet? <a href="http://www2.inf.h-brs.de/~lwerte2s/web/www-navigator/dist/index.html"> Sign up now.</a></p>
-<p>No account jet? <a href="./web/www-navigator/dist/index.html"> to app.</a></p>
+async function fetchData(url) {
+    const request = await fetch(url);
+    return await request.text();
+}
+
+async function display() {
+
+    const data = await fetchData("./web/U7/7-2_Rednerliste.html");
+    const content = document.getElementById("content");
+    content.innerHTML = data;
+}
+
+</script>
+
 </body>
 </html>
