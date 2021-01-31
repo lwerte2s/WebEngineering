@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["user"],{1511:function(t,u,n){"use strict";n.r(u);var e=function(){var t=this,u=t.$createElement,n=t._self._c||u;return n("div",[n("h1",[t._v("Hallo "+t._s(t.user))]),n("button",{staticClass:"btn",on:{click:t.logOut}},[t._v("Log out")])])},s=[],o=n("ce28"),l={data:function(){return{user:o["a"].user}},methods:{logOut:function(){o["a"].user=null,this.$router.push("/")}}},r=l,a=n("2877"),c=Object(a["a"])(r,e,s,!1,null,null,null);u["default"]=c.exports}}]);
+//# sourceMappingURL=user.fed00f4f.js.map

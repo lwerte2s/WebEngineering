@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <title>Survey Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+        body {
+            background-color: #b2d6d1;
+            text-align: center;
+            font-family: Verdana;
+        }
+
+        .background {
+            display: inline-block;
+            background-color: white;
+            width: 80%;
+            border-radius: 5px;
+        }
+
+        select {
+            background-color: rgb(240,240,240);
+        }
+
+        table {
+            position: relative;
+            left: 150px;
+        }
+
+        table tr td {
+            text-align: right;
+            padding: 10px;
+
+        }
+
+        .alignleft {
+            text-align: left;
+        }
+
+        ::placeholder {
+            opacity: 0.6
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+<h1>Survey Form</h1>
+<div class="background">
+    <br>
+    <p>Let us Know how we can improve freeCodeCamp</p>
+
+
+    <table>
+        <tr>
+            <td>
+                <label for="name" >* Name: </label>
+            </td>
+            <td>
+                <input class="alignleft" type="text" id="name" name="name" placeholder="Enter your name">
+            </td>
+        </tr>
+        <tr>
+        <tr>
+            <td>
+                <label for="email" >* Email: </label>
+            </td>
+            <td>
+                <input class="alignleft" type="email" id="email" name="email" placeholder="Enter your Email">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="age" >* Age: </label>
+            </td>
+            <td>
+                <input class="alignleft" type="number" id="age" name="age" placeholder="Age">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="role">Which option best describes your current role?</label>
+            </td>
+            <td>
+                <form class="alignleft">
+                    <select  id="role" name="role">
+                        <option value="Student">Student</option>
+                    </select>
+                </form>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>* How likely is that you would recommend <br>freeCodeCamp to a friend?</p>
+            </td>
+            <td>
+                <form class="alignleft">
+                    <input type="radio" id="def" name="f" value="Definitely">
+                    <label for="def">Definitely</label><br>
+                    <input type="radio" id="maybe" name="f" value="maybe">
+                    <label for="maybe">Maybe</label><br>
+                    <input type="radio" id="nsure" name="f" value="Not sure">
+                    <label for="nsure">Not sure</label>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="option">What do you like most in FCC:</label>
+            </td>
+            <td>
+                <form class="alignleft">
+                    <select  id="option" name="option">
+                        <option value="default">Select an option</option>
+                    </select>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>Things that should be improved in the future <br> (Check all that apply):</p>
+            </td>
+            <td>
+                <form class="alignleft">
+                    <input type="checkbox" id="front" name="front" value="Front-end Projects">
+                    <label for="front">Fron-end Projects</label><br>
+                    <input type="checkbox" id="back" name="back" value="Back-end Projects">
+                    <label for="back">Back-end Projects</label><br>
+                    <input type="checkbox" id="data" name="data" value="Data Visualization">
+                    <label for="data">Data Visualization</label>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+
+
+
+
+</div>
+
+</body>
+</html>

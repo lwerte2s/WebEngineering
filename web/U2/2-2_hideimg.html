@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hide Image</title>
+</head>
+<style>
+    img{ width: 60%;
+    }
+</style>
+<body>
+
+<h1>Übung 2.2</h1>
+<label for="myCheck">Checkbox:</label>
+<input type="checkbox" id="hide" onclick="hideImage()" >
+<img id ="image" style="display:none" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Hochschule_Bonn-Rhein-Sieg_Wolfgang_G%C3%B6ddertz_Induktion.jpg" alt="Hochschule">
+<script>
+    function hideImage(){
+        var checkBox = document.getElementById("hide");
+        var image = document.getElementById("image")
+        if(checkBox.checked == true){
+            image.style.display = "block";
+        } else {
+            image.style.display = "none";
+        }
+    }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP</title>
+
+    <style>
+        .frage {
+            font-weight: bold;
+            font-style: italic;
+            font-size: 25px;
+            color: rgb(107, 106, 106);
+        }
+
+        .antwort {
+            font-size: 20px;
+        }
+
+        .text {
+            text-align: center;
+        }
+
+        .set {
+            color: green;
+            border-bottom: 1px solid gray;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="text">
+        <h1>1.2. HTTP</h1>
+        <div class="set">
+            <p class="frage">Sie bekommen im Browser den HTTP Status Code 200. Was bedeutet das?</p>
+            <p class="antwort">OK success - Die Anfrage war Erfolgreich.</p>
+        </div>
+        
+        <div class="set">
+            <p class="frage">Sie bekommen im Browser den HTTP Status Code 301. Was hat das zu bedeuten?</p>
+            <p class="antwort">Moved Permanently - Die angeforderte Ressource wurde permanent auf eine andere Adresse verschoben.</p> 
+        </div>
+        
+
+        <div class="set">
+            <p class="frage">Sie bekommen im Browser den HTTP Status Code 400. Was hat das zu bedeuten? Was können Sie dagegen tun?</p>
+            <p class="antwort">Bad Request - Fehlerhafte Anfrage auf Seite des Clients. -> Fehler beheben und erneut versuchen.</p>
+        </div>
+        
+
+        <div class="set">
+            <p class="frage">Sie bekommen im Browser den HTTP Status Code 403. Was hat das zu bedeuten? Was können Sie dagegen tun?</p>
+            <p class="antwort">Forbidden client - Server versteht die Anfrage aber der Client hat keine Berechtigung für diese Ressource. -> Benötigte
+            Berechtigung erlangen.</p>
+        </div>
+        
+
+        <div class="set">
+            <p class="frage">In einer Webanwendung benötigen Sie eine OPTIONS-Anfrage, die die Optionen des Servers vor dem eigentlichen Zugriff
+            erfragen soll. Aus Performanzgründen soll die Abfrage jedoch cacheable sein. Wie könnten Sie dafür eine Lösung angehen?</p>
+            <p class="antwort">OPTIONS ist von Haus aus nicht cacheable. Stattdessen könnte man eine Get-Anfrage zum Abfragen der Server Optionen benutzen.</p>
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

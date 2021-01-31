@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP</title>
+
+    <style>
+        .frage {
+            font-weight: bold;
+            font-style: italic;
+            font-size: 25px;
+            color: rgb(107, 106, 106);
+        }
+
+        .antwort {
+            font-size: 20px;
+        }
+
+        .text {
+            text-align: left;
+        }
+
+        .set {
+            color: green;
+            border-bottom: 1px solid gray;
+        }
+
+        iframe {
+            min-width: 70vw;
+            min-height: 20vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text">
+        <h1>1.3. HTML-Literatur lesen und Fragen beantworten</h1>
+        <div class="set">
+            <p class="frage">Was ist HTML?</p>
+            <p class="antwort">HTML steht für Hypertext Markup Language. HTML ist eine Sprache die von einer Maschine gelesen werden kann und zur
+            Gliederung und Formatierung von Texten und anderen Daten dient.</p>
+        </div>
+
+        <div class="set">
+            <p class="frage">Wie kann man eine geschachtelte geordnete Liste der Schachtelungstiefe 3 erzeugen?</p>
+            <p class="antwort">
+            <pre>
+            &ltol>
+                &ltli>
+                    &ltol>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                            &lt/ol>
+                        &lt/li>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                            &lt/ol>
+                        &lt/li>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                            &lt/ol>
+                        &lt/li>
+                    &lt/ol>
+                &lt/li>
+                &ltli>
+                    &ltol>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                            &lt/ol>
+                        &lt/li>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                            &lt/ol>
+                        &lt/li>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                            &lt/ol>
+                        &lt/li>
+                    &lt/ol>
+                &lt/li>
+                &ltli>
+                    &ltol>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                            &lt/ol>
+                        &lt/li>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                            &lt/ol>
+                        &lt/li>
+                        &ltli>
+                            &ltol>
+                                &ltli>eins&lt/li>
+                                &ltli>zwei&lt/li>
+                                &ltli>drei&lt/li>
+                                &lt/ol>
+                        &lt/li>
+                    &lt/ol>
+                &lt/li>
+            &lt/ol>
+                </pre>
+                <p><ol>
+                    <li>
+                        <ol>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <ol>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <ol>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <ol>
+                                    <li>eins</li>
+                                    <li>zwei</li>
+                                    <li>drei</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                </ol></p>
+
+            </p>
+
+               
+        </div>
+
+
+        <div class="set">
+            <p class="frage">Wie ist eine HTML-Tabelle aufgebaut?</p>
+            <p class="antwort">Eine HTML-Tabelle ist in table rows = tr, tabel header = th und tabel data = td aufgeteilt</p>
+            <pre>
+                &lttable>
+                    &lttr>
+                        &ltth>header here&lt/th>
+                    &lt/tr>
+                    &lttr>
+                        &lttd>data here&lt/td>
+                    &lt/tr>
+                &lt/table>
+            </pre>
+            <p> 
+                <table>
+                    <tr>
+                        <th>header here</th>
+                    </tr>
+                    <tr>
+                        <td>data here</td>
+                    </tr>
+                </table>
+            </p>
+        </div>
+
+
+        <div class="set">
+            <p class="frage">Welche Konventionen sollte man bei Pfaden und Dateinamen beachten?</p>
+            <p class="antwort">Wenn möglich relative Dateipfade nutzen und Dateinamen klein schreiben.</p>
+        </div>
+
+
+        <div class="set">
+            <p class="frage">Wie baut man in HTML ein Menü?</p>
+            <p class="antwort">Mit einer unordered list und links als list-item.</p>
+            <pre>
+            &lth2>Navigation Menu&lt/h2>
+            
+            &ltul>
+                &ltli>&lta href="#home">Home&lt/a>&lt/li>
+                &ltli>&lta href="#news">News&lt/a>&lt/li>
+                &ltli>&lta href="#contact">Contact&lt/a>&lt/li>
+                &ltli>&lta href="#about">About&lt/a>&lt/li>
+            &lt/ul>
+            &lt!--Von w3schools kopiert-->
+        </pre>
+        <iframe src="./menu.html" frameborder="1"></iframe>
+        </div>
+
+         <div class="set">
+            <p class="frage">Welche Attribute sollte man bei Bildern wie verwenden?</p>
+            <pre class="antwort">
+            &ltimg src="bild.jpg" alt="Bild" style="width:500px;height:600px;">
+            
+            Alt als Ersatz falls Bild nicht geladen werden kann.
+            Außerdem height und width immer angeben, allerdings mit style=".." anstatt height=".." und width=".."</pre>
+         </div>
+
+
+    </div>
+
+
+</body>
+
+</html>
