@@ -1,0 +1,160 @@
+<!DocType html>
+<html lang="de">
+<head>
+    <title>Funktionen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+        textarea {
+            resize: none;
+            background-color: rgb(44, 44, 44);
+            color
+            : rgb(154, 215, 255);
+        }
+
+        .frage {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(107, 106, 106);
+            padding-top: 5px;
+            border-top: 2px solid green;
+            border-bottom: 2px solid green;
+        }
+
+        .antwort {
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Funktionen</h1>
+<p class="frage">Schreiben Sie eine Funktion identity(), die ein Argument als Parameter entgegen nimmt und dieses als Ergebnis zurück
+gibt.</p>
+<textarea disabled  cols="30" rows="4">function identity(x){
+    return x;
+}</textarea>
+<br>
+<button onclick="identityClick()">Check function</button>
+<p id="identity" class="antwort"></p>
+<br>
+
+
+<p class="frage">Schreiben Sie eine Funktion identity_function(), die ein Argument als Parameter entgegen nimmt und eine Funktion zurück
+gibt, die dieses Argument zurück gibt.</p>
+<textarea disabled cols="30" rows="4">function identity_function(x){
+    return identity(x);
+}</textarea>
+<br>
+<button onclick="identity_functionClick()">Check function</button>
+<p id="identity_function" class="antwort"></p>
+<br>
+
+
+<p class="frage">Schreiben Sie zwei binäre Funktionen add und mul, die Summe und Produkt berechnen.</p>
+<textarea disabled cols="30" rows="4">function add(x,y){
+    return x+y;
+}</textarea>
+<br>
+<button onclick="addClick()">Check function</button>
+<p id="add" class="antwort"></p>
+<br>
+<textarea disabled cols="30" rows="4">function mul(x,y){
+    return x*y;
+}</textarea>
+<br>
+<button onclick="mulClick()">Check function</button>
+<p id="mul" class="antwort"></p>
+<br>
+
+
+<p class="frage">Schreiben Sie eine Addier-Funktion addf(), so dass addf(x)(y) genau x + y zurück gibt. (Es haben also zwei
+Funktionsaufrufe zu erfolgen. addf(x) liefert eine Funktion, die auf y angewandt wird.)</p>
+<textarea disabled cols="30" rows="6">function addf(x){
+    return function y(y){
+        return x + y;
+    }
+}</textarea>
+<br>
+<button onclick="addfClick()">Check function</button>
+<p id="addf" class="antwort"></p>
+<br>
+
+
+<p class="frage">Schreiben Sie eine Funktion applyf(), die aus einer binären Funktion wie add(x,y) eine Funktion addfberechnet, die mit
+zwei Aufrufen das gleiche Ergebnis liefert, z.B. addf = applyf(add); addf(x)(y) soll add(x,y) liefern. Entsprechend
+applyf(mul)(5)(6) soll 30 liefern, wenn mul die binäre Multiplikation ist.</p>
+<textarea disabled cols="30" rows="8">function applyf(f){
+    return function x(x){
+        return function y(y){
+            return f(x,y);
+        }
+    }
+}</textarea>
+<br>
+<button onclick="applyfClick()">Check function</button>
+<p id="applyf" class="antwort"></p>
+<br>
+
+<script>
+    function identity(x){
+        return x;
+    }
+
+    function identity_function(x){
+        return identity(x);
+    }
+
+    function add(x,y){
+        return x+y;
+    }
+
+    function mul(x,y){
+        return x*y;
+    }
+
+    function addf(x){
+        return function y(y){
+            return x + y;
+        }
+    }
+
+    function applyf(f){
+        return function x(x){
+            return function y(y){
+                return f(x,y);
+            }
+        }
+    }
+
+    function identityClick(){
+        document.getElementById("identity").innerHTML = "identity('Hello World!') = "+ identity("Hello World!");
+    }
+
+    function identity_functionClick() {
+        document.getElementById("identity_function").innerHTML = "identity_function('Hello World!') = " + identity_function("Hello World!");
+    }
+
+    function addClick(){
+        document.getElementById("add").innerHTML = "add(22,47) = "+ add(22,47);
+    }
+
+    function mulClick(){
+        document.getElementById("mul").innerHTML = "mul(22,47) = " + mul(22, 47);
+    }
+
+    function addfClick(){
+        document.getElementById("addf").innerHTML = "addf(22)(47) = " + addf(22)(47);
+    }
+
+    function applyfClick(){
+        document.getElementById("applyf").innerHTML = "applyf(mul)(5)(6) = " + applyf(mul)(5)(6);
+    }
+
+</script>
+
+
+
+</body>
+</html>

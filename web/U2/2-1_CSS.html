@@ -8,7 +8,6 @@
     <style>
         .frage {
             font-weight: bold;
-            font-style: italic;
             font-size: 25px;
             color: rgb(107, 106, 106);
         }
@@ -18,12 +17,13 @@
         }
 
         .text {
-            text-align: center;
+            text-align: left;
         }
 
         .set {
-            color: green;
-            border-bottom: 1px solid gray;
+            color: black;
+            font-style: italic;
+            border-bottom: 1px solid green;
         }
     </style>
 </head>
@@ -33,39 +33,39 @@
         <h1>2.1. CSS Selektoren und CSS Farben</h1>
         <div class="set">
             <pre class="frage">
-                Berechnen Sie die Spezifität folgender CSS-Selektoren:
+Berechnen Sie die Spezifität folgender CSS-Selektoren:
                 
-                div div div:focus .inner
-                h1 + div.main
-                div a:link[href*='h-brs']
-                nav > a:hover::before
-                ul#primary-nav li.active
+div div div:focus .inner
+h1 + div.main
+div a:link[href*='h-brs']
+nav > a:hover::before
+ul#primary-nav li.active
             </pre>
             <pre class="antwort">
-                div div div:focus .inner = 23
-                h1 + div.main = 12
-                div a:link[href*='h-brs'] = 22
-                nav > a:hover::before = 13
-                ul#primary-nav li.active = 112
+div div div:focus .inner = 23
+h1 + div.main = 12
+div a:link[href*='h-brs'] = 22
+nav > a:hover::before = 13
+ul#primary-nav li.active = 112
             </pre>
         </div>
 
         <div class="set">
             <pre class="frage">
-                Rechnen Sie folgende RGB-Werte in HSL-Werte um:
+Rechnen Sie folgende RGB-Werte in HSL-Werte um:
                 
-                #ffffff
-                #000
-                #ab0978
-                rgb(127,255,33)
-                rgba(255,127,33,0.8)
+#ffffff
+#000
+#ab0978
+rgb(127,255,33)
+rgba(255,127,33,0.8)
             </pre>
             <pre class="antwort">
-                #ffffff = (0°, 0%, 100%)
-                #000 = (0°, 0%, 0%)
-                #ab0978 = rbg(171,9,120) = (319°,90%,35.3%)
-                rgb(127,255,33) = (95°, 100% ,56.5%)
-                rgba(255,127,33,0.8) = (25°, 100%, 56.5%, 0.8)
+#ffffff = (0°, 0%, 100%)
+#000 = (0°, 0%, 0%)
+#ab0978 = rbg(171,9,120) = (319°,90%,35.3%)
+rgb(127,255,33) = (95°, 100% ,56.5%)
+rgba(255,127,33,0.8) = (25°, 100%, 56.5%, 0.8)
             </pre>
         </div>
 
