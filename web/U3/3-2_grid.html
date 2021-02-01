@@ -1,0 +1,68 @@
+<!DocType html>
+<html lang="de">
+<head>
+    <title>Grid Mobile-First</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        * { box-sizing: border-box;}
+
+        .container {
+            display: grid;
+            grid-templete-rows: 100px 400px 100px 100px;
+            grid-template-columns: 100%;
+        }
+
+
+        .red {background-color: red; grid-row: 1; height: 100px;}
+        .blue {background-color: blue; grid-row: 2; height: 400px;  }
+        .green {background-color: green; grid-row: 3; height: 100px;  }
+        .violet {background-color: violet;  grid-row: 4; height: 100px;}
+
+
+
+        @media screen and (min-width: 800px){
+            .container {
+                grid-template-rows: 110px 400px 100px;
+                grid-template-columns: 20% 80%;
+            }
+            .blue { grid-row: 2; grid-column: 2;}
+            .green { grid-row: 2; grid-column: 1; height: 400px;}
+            .red {grid-area: 1/1/2/3; }
+            .violet {grid-area: 3/1/4/3; }
+            .container > div{ border: 3px solid white;}
+
+        }
+
+
+        @media screen and (min-width: 1200px){
+            .container {
+                grid-template-rows: 110px 400px ;
+                grid-template-columns: 20% 60% 20%;
+            }
+            .blue { grid-row: 2; grid-column: 2;}
+            .green { grid-row: 2; grid-column: 1; height: 400px;}
+            .red {grid-area: 1/1/2/4; }
+            .violet {grid-area: 2/3/3/4; height: 400px;}
+            .container > div{ border: 3px solid white;}
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="red mar"><p>red</p> </div>
+    <div class="green mar"><p>green</p> </div>
+    <div class="blue mar"><p>blue</p> </div>
+    <div class="violet mar"><p>violet</p> </div>
+</div>
+
+
+
+
+</body>
+</html>

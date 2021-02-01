@@ -1,0 +1,140 @@
+<!DocType html>
+<html lang="de">
+<head>
+    <title>You dont know</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+             box-sizing: border-box;
+           }
+
+        .site{
+            display: grid;
+            grid-template-areas:
+            'header header'
+            'title title'
+            'image text'
+            'footer footer';
+            grid-gap: 30px;
+            font-family: "Arial";
+            text-align: center;
+
+        }
+        .header {
+            width: 100%;
+            background-color: rgb(60,60,60);
+            grid-area: header;
+        }
+
+        .btn-group {
+            display: inline;
+            padding-left: 33%;
+            float: left;
+        }
+
+        .btn-group .button {
+            color: white;
+            background-color:rgb(60,60,60);
+            float: left;
+            display: inline;
+            text-align: center;
+            font-size: 2vh;
+            padding: 2vh 1vw;
+            border: none;
+            grid-row: 1
+        }
+
+        .title{
+            grid-area: title;
+            font-size: 2vh;
+         }
+
+        .image{
+            grid-area: image;
+            }
+
+        .text{
+            grid-area: text;
+            text-align: center;
+            font-size: 2.3vh;
+        }
+        .footer{
+            grid-area: footer;
+            background-color: rgb(0,37,63);
+            color: white;
+            font-size: 2.3vh;
+            padding: 90px 0 50px 0;
+        }
+
+
+        a:link, a:visited{
+            color: white;
+            background-color: orange;
+            text-decoration: none;
+            padding: 10px 30px;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        #link2 { padding: 10px 100px;}
+
+        img {
+            border-radius: 8px;
+            border: 2px solid grey;
+        }
+
+
+    </style>
+</head>
+<body>
+
+
+
+
+<div class="site">
+    <div class="header">
+        <div class="btn-group">
+            <button class="button">The book series</button>
+            <button class="button">Testimonials</button>
+            <button class="button">The Author</button>
+            <button class="button">Free resources</button>
+        </div>
+    </div>
+
+    <div class="title">
+        <h1> You dont know JavaScript</h1>
+    </div>
+
+
+    <div class="image">
+        <img src="https://kaul.inf.h-brs.de/we/assets/img/landing-img.png" alt="You dont know JavaScript" width="500px" height="auto;">
+        <br>
+    </div>
+
+
+    <div class="text">
+        <div class="mytext">
+            <p>Don't just drift through Javascript.</p>
+            <br>
+            <p>Understand how Javascript works</p>
+            <br>
+            <p>Start your journey through the bumpy side of Javascript</p>
+            <br>
+            <a href="#link">ORDER YOUR COPY NOW</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>The first ebook in the book series in absolutely free.</p>
+        <a id="link2" href="#link">FIND OUT MORE ABOUT THIS OFFER</a>
+        <br>
+    </div>
+
+
+</div>
+
+
+
+</body>
+</html>
