@@ -208,7 +208,7 @@
         }
 
 
-        [Symbol.iterator](){
+        [Symbol.iterator]() {
             const values = this.topSort();
             let i = 0;
             return {
@@ -245,6 +245,7 @@
         }*/
     };
 
+
     const vorrang = new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen", "essen"] ]);
 
     //console.log(proxy["dependencies"])
@@ -252,17 +253,17 @@
     let myIterator = vorrang[Symbol.iterator]();
     const proxy = new Proxy(myIterator,handler);
 
-    console.assert('{"value":"schlafen","done":false}' === JSON.stringify(proxy.next()));
+   /* console.assert('{"value":"schlafen","done":false}' === JSON.stringify(proxy.next()));
     console.assert('{"value":"essen","done":false}' === JSON.stringify(proxy.next()));
     console.assert('{"value":"studieren","done":false}' === JSON.stringify(proxy.next()));
     console.assert('{"value":"prüfen","done":false}' === JSON.stringify(proxy.next()));
     console.assert('{"done":true}' === JSON.stringify(proxy.next()));
 
+    */
 
 
 
-
-    for( const x of vorrang){
+    for( const x of proxy){
         console.log(x);
     }
 
