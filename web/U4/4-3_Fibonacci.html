@@ -3,10 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>U4-2</title>
+
+    <style>
+        .frage {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(107, 106, 106);
+            padding-top: 5px;
+            border-top: 2px solid green;
+            border-bottom: 2px solid green;
+        }
+
+        .antwort {
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
+<h1>Fibonacci-Zahlen</h1>
+<h3>In der Console stehen die ersten 2000 Fibonacci-Zahlen.</h3>
+<p class="frage">Was ist die größte Fibonacci-Zahl, die sich noch als Integer sicher speichern lässt (Number.MAX_SAFE_INTEGER)? Die
+wievielte Fibonacci-Zahl in der Fibonacci-Folge ist das?</p>
+<p class="antwort">number.MAX_SAFE_INTEGER = 9.007.199.254.740.991 oder ca. 9 Billiarde <br>
+78. zahl : 8.944.394.323.791.464</p>
+<br>
+<p class="frage">Was ist die größte Fibonacci-Zahl, die sich noch als Number speichern lässt (Number.MAX_VALUE)? Die wievielte
+Fibonacci-Zahl in der Fibonacci-Folge ist das (d.h. welche Stelle in der Fibonacci-Folge)?</p>
+<p class="antwort">number.MAX_VALUE = 1,79⋅10^308 <br>
+1476. Zahl: 130698922376339931803631155380271983098392443907412640726006659460192793070479231740288681087777017721095463154979012276
+234322246936939647185366706368489362660844147449941348462800922755818969634743348982916424954062744135969865615407276492410653721774
+590669544801490837649161732095972658064630033793347171632</p>
 
-<h1 id="fibo"></h1>
 
 <script>
 
@@ -20,22 +47,23 @@
         if (num <= 1) {
             alreadyCalculated[num] = 1;
             i = i+1;
-            console.log("1 number:" + i);
+            console.log("number:" + i);
+            console.log(1);
             return 1;
         }
 
         var fib = BigInt(fibonacci(num - 1, alreadyCalculated)) + BigInt(fibonacci(num - 2, alreadyCalculated));
         alreadyCalculated[num] = fib;
         i = i+1;
-        console.log(fib +" number:"+ i);
-        if(fib > 9007199254740991){
-            console.log("here")
-        }
+        console.log("number:"+ i);
+        console.log(fib );
+
         return fib;
     }
 
 
-    document.getElementById("fibo").innerHTML = fibonacci(2000);
+    fibonacci(1999);
+
 </script>
 
 </body>

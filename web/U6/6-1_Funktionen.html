@@ -1,0 +1,378 @@
+<!DocType html>
+<html lang="de">
+
+<head>
+    <title>Funktionen</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        textarea {
+            resize: none;
+            background-color: rgb(44, 44, 44);
+            color: rgb(154, 215, 255);
+        }
+
+        .frage {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(107, 106, 106);
+            padding-top: 5px;
+            border-top: 2px solid green;
+            border-bottom: 2px solid green;
+        }
+
+        .antwort {
+            font-size: 20px;
+        }
+
+        button {
+            background-color: green;
+            font-weight: bold;
+            color: white;
+            padding: 5px 40px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: rgb(3, 143, 3);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>6.1. Funktionen in JavaScript</h1>
+
+
+    <p class="frage">Schreiben Sie eine Funktion identity_function(), die ein Argument als Parameter entgegen nimmt und
+        eine Funktion zurück
+        gibt, die dieses Argument zurück gibt.</p>
+    <textarea disabled cols="50" rows="4">
+    function identity_function(x) {
+        return () => { return x; }
+    }</textarea>
+    <br>
+    <button onclick="identity_functionClick()">Check function</button>
+    <p id="identity_function" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Addier-Funktion addf(), so dass addf(x)(y) genau x + y zurück gibt. (Es haben
+        also zwei
+        Funktionsaufrufe zu erfolgen. addf(x) liefert eine Funktion, die auf y angewandt wird.)</p>
+    <textarea disabled cols="50" rows="4">
+    function addf(x) {
+        return (y) => { return x+y; }
+    }</textarea>
+    <br>
+    <button onclick="addfClick()">Check function</button>
+    <p id="addf" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Funktion applyf(), die aus einer binären Funktion wie add(x,y) eine Funktion
+        addfberechnet, die mit
+        zwei Aufrufen das gleiche Ergebnis liefert, z.B. addf = applyf(add); addf(x)(y) soll add(x,y) liefern.
+        Entsprechend
+        applyf(mul)(5)(6) soll 30 liefern, wenn mul die binäre Multiplikation ist.</p>
+    <textarea disabled cols="50" rows="8">
+    function applyf(f){
+        return (x) => {
+            return (y) => {
+                return f(x,y);
+            }
+        }
+    }</textarea>
+    <br>
+    <button onclick="applyfClick()">Check function</button>
+    <p id="applyf" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Funktion curry() (von Currying), die eine binäre Funktion und ein Argument nimmt, um daraus eine
+    Funktion zu erzeugen, die ein zweites Argument entgegen nimmt, z.B. add3 = curry(add, 3);add3(4) ergibt 7. curry(mul,
+    5)(6) ergibt 30.</p>
+    <textarea disabled cols="50" rows="6">
+    function curry(f, a) {
+        return (b) =>{
+            return f(a,b);
+        }
+    }</textarea>
+    <br>
+    <button onclick="curryClick()">Check function</button>
+    <p id="curry" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Erzeugen Sie die inc-Funktion mit Hilfe einer der Funktionen addf, applyf und curry aus den letzten Aufgaben, ohne die
+    Funktion inc() selbst zu implementieren. (inc(x) soll immer x + 1 ergeben und lässt sich natürlich auch direkt
+    implementieren. Das ist aber hier nicht die Aufgabe.) Vielleicht schaffen Sie es auch, drei Varianten der
+    inc()-Implementierung zu schreiben?</p>
+    <textarea disabled cols="50" rows="12">
+    function add(x,y) {
+        return x+y;
+    }
+    
+    function inc(x) {
+        return curry(add,1)(x);
+    }
+    
+    function inc2(x) {
+        return addf(x)(1);
+    }</textarea>
+    <br>
+    <button onclick="incClick()">Check function</button>
+    <p id="inc" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Funktion methodize(), die eine binäre Funktion (z.B. add, mul) in eine unäre Methode verwandelt. Nach
+    Number.prototype.add = methodize(add); soll (3).add(4) genau 7 ergeben.</p>
+    <textarea disabled cols="50" rows="6">
+    function methodize(f) {
+        return function(x) {
+            return f(this,x);
+    };
+    }</textarea>
+    <br>
+    <button onclick="methodizeClick()">Check function</button>
+    <p id="methodize" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Funktion demethodize(), die eine unäre Methode (z.B. add, mul) in eine binäre Funktion umwandelt.
+    demethodize(Number.prototype.add)(5, 6) soll 11 ergeben.</p>
+    <textarea disabled cols="50" rows="6">
+    function demethodize(method) {
+        return function (x,y) {
+            return method.call(x,y);
+        }
+    }</textarea>
+    <br>
+    <button onclick="demethodizeClick()">Check function</button>
+    <p id="demethodize" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Funktion twice(), die eine binäre Funktion in eine unäre Funktion umwandelt, die den einen Parameter
+    zweimal weiter reicht. Z.B. var double = twice(add); double(11) soll 22 ergeben; var square = twice(mul); square(11)
+    soll mul(11,11) === 121 ergeben.</p>
+    <textarea disabled cols="50" rows="6">
+    function twice(f) {
+        return (x) => {
+            return f(x,x);
+        }
+    }</textarea>
+    <br>
+    <button onclick="twiceClick()">Check function</button>
+    <p id="twice" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Funktion composeu(), die zwei unäre Funktionen in eine einzelne unäre Funktion transformiert, die
+    beide nacheinander aufruft, z.B. soll composeu(double, square)(3) genau 36 ergeben.</p>
+    <textarea disabled cols="50" rows="6">
+    function composeu(f1, f2) {
+        return (x) => {
+            return f2(f1(x));
+        }
+    }</textarea>
+    <br>
+    <button onclick="composeuClick()">Check function</button>
+    <p id="composeu" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Funktion composeb(), die zwei binäre Funktionen in eine einzelne Funktion transformiert, die beide
+    nacheinander aufruft, z.B. composeb(add, mul)(2, 3, 5) soll 25 ergeben.</p>
+    <textarea disabled cols="50" rows="7">
+    function composeb(f1,f2,) {
+        return (x,y,z) => {
+            let result = f1(x,y);
+            return f2(result,z);
+        }
+    }</textarea>
+    <br>
+    <button onclick="composebClick()">Check function</button>
+    <p id="composeb" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Funktion once(), die einer anderen Funktion nur einmal erlaubt, aufgerufen zu werden, z.B. add_once =
+    once(add); add_once(3, 4) soll beim ersten Mal 7 ergeben, beim zweiten Mal soll jedoch add_once(3, 4) einen
+    Fehlerabbruch bewirken.</p>
+    <textarea disabled cols="50" rows="9">
+    function once(f) {
+        let i = 0;
+        return function (...y) {
+            if(i++ === 0){
+                return f(...y);
+            }
+        }
+    }</textarea>
+    <br>
+    <button onclick="onceClick()">Check function</button>
+    <p id="once" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine Fabrik-Funktion counterf(), die zwei Funktionen inc() und dec() berechnet, die einen Zähler hoch- und
+    herunterzählen. Z.B. counter = counterf(10); Dann soll counter.inc() 11 und counter.dec() wieder 10 ergeben.</p>
+    <textarea disabled cols="50" rows="12">
+    function counterf(x) {
+        let i = x;
+        return {
+            dec : () => {
+                return --i;
+            },
+            inc: () => {
+                return ++i;
+            }
+        }
+    }</textarea>
+    <br>
+    <button onclick="counterClick()">Check function</button>
+    <p id="counter" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Schreiben Sie eine rücknehmbare Funktion revocable(), die als Parameter eine Funktion nimmt und diese bei Aufruf
+    ausführt. Sobald die Funktion aber mit revoke() zurück genommen wurde, führt ein erneuter Aufruf zu einem Fehler. Z.B. <br>
+    temp = revocable(alert);<br>
+    temp.invoke(7); // führt zu alert(7);<br>
+    temp.revoke();<br>
+    temp.invoke(8); // Fehlerabbruch!</p>
+    <textarea disabled cols="50" rows="14">
+    function revocable(f) {
+        let revoked = false;
+        return {
+            invoke : function (...y) {
+                if(!revoked){
+                    return f(...y);
+                }
+            },
+            revoke : function () {
+                revoked = true;
+            }
+        }
+    }</textarea>
+    <br>
+    <button onclick="revokeClick()">Check function</button>
+    <p id="revoke" class="antwort"></p>
+    <br>
+
+
+    <p class="frage">Implementieren Sie ein "Array Wrapper"-Objekt mit den Methoden get, store und append, so dass ein Angreifer keinen
+    Zugriff auf das innere, private Array hat. <br>
+    my_vector = vector(); <br>
+    my_vector.append(7); <br>
+    my_vector.store(1, 8); <br>
+    my_vector.get(0) // 7 <br>
+    my_vector.get(1) // 8</p>
+    <textarea disabled cols="50" rows="15">
+    function vector() {
+        let privateData = [];
+        return {
+            get: function (i) {
+                return privateData[i];
+            },
+            store: function (i,x) {
+                privateData[i] = x;
+            },
+            append: function (x) {
+                privateData.push(x);
+            }
+        }
+    }</textarea>
+    <br>
+    <button onclick="vectorClick()">Check function</button>
+    <p id="vector" class="antwort"></p>
+    <br>
+
+
+
+
+    <script src="./U6_1.js"></script>
+    <script>
+
+
+        function identity_functionClick() {
+            const hello = identity_function("Hello World!");
+            document.getElementById("identity_function").innerHTML = "const hello = identity_function('Hello World!');<br> hello() = " + hello();
+        }
+
+        function addfClick() {
+            document.getElementById("addf").innerHTML = "addf(22)(47) = " + addf(22)(47);
+        }
+
+        function applyfClick() {
+            document.getElementById("applyf").innerHTML = "applyf(mul)(5)(6) = " + applyf(mul)(5)(6);
+        }
+
+        function curryClick() {
+            document.getElementById("curry").innerHTML = "curry(mul,5)(6) = " + curry(mul,5)(6);
+        }
+
+        function incClick() {
+            document.getElementById("inc").innerHTML = "inc(10) = " + inc(10);
+        }
+
+        function methodizeClick() {
+            Number.prototype.add = methodize(add);
+            document.getElementById("methodize").innerHTML = "Number.prototype.add = methodize(add);<br> (3).add(4) = " + (3).add(4);
+        }
+
+        function demethodizeClick() {
+            Number.prototype.add = methodize(add);
+            document.getElementById("demethodize").innerHTML = "Number.prototype.add = methodize(add);<br> demethodize(Number.prototype.add)(5, 6)  = " + demethodize(Number.prototype.add)(5, 6);
+        }
+
+        function twiceClick() {
+            let double = twice(add);
+            document.getElementById("twice").innerHTML = "let double = twice(add);<br> double(11) = " + double(11);
+        }
+
+        function composeuClick() {
+            let double = twice(add);
+            let square = twice(mul);
+            document.getElementById("composeu").innerHTML = "composeu(double,square)(3) = " + composeu(double,square)(3);
+        }
+
+        function composebClick() {
+            document.getElementById("composeb").innerHTML = "composeb(add,mul)(2,3,5) = " + composeb(add,mul)(2,3,5);
+        }
+
+
+       function onceClick() {
+            const add_once = once(add);
+            document.getElementById("once").innerHTML = "const add_once = once(add);<br>add_once(3,4) = " + add_once(3,4) + "<br>add_once(3,4) = " + add_once(3,4);
+        }
+
+       function counterClick() {
+            let counter = counterf(10);
+            document.getElementById("counter").innerHTML = "let counter = counterf(10);<br>counter.inc() = " + counter.inc() + "<br>counter.dec() = " + counter.dec();
+        }
+
+
+       function revokeClick() {
+            const temp = revocable(inc);
+            document.getElementById("revoke").innerHTML = "const temp = revocable(inc);<br>"+ "temp.invoke(7) = " + temp.invoke(7)
+            + "<br>temp.revoke(); <br><span id='revoke2' class='antwort'></span>";
+             temp.revoke();
+            document.getElementById("revoke2").innerHTML = "temp.invoke(8) = " + temp.invoke(8);
+
+        }
+
+        function vectorClick() {
+            my_vector = vector();
+            my_vector.append(70);
+            my_vector.store(1, 80);
+            document.getElementById("vector").innerHTML = "my_vector = vector();<br>my_vector.append(70);<br>my_vector.store(1, 80);<br> my_vector.get(0) = " + my_vector.get(0) + "<br>my_vector.get(1) = "+ my_vector.get(1);
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

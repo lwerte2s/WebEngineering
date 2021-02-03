@@ -2,9 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Vorrangrelationen</title>
+    <title>5-1</title>
+
+    <style>
+        textarea {
+            resize: none;
+            background-color: rgb(44, 44, 44);
+            color: rgb(178, 222, 252);
+        }
+
+        h1 {
+            border-bottom: 2px solid green;
+            padding-bottom: 3px;
+        }
+
+        p {
+            font-size: 15px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid green;
+        }
+
+    </style>
 </head>
 <body>
+
+    <h1>5.1. Klasse für Vorrangrelationen</h1>
+    <h2>Code der Klasse Vorrang:</h2>
+    <textarea disabled cols="200" rows="63">
+    class Vorrang{
+        constructor(abhaengigkeiten) {
+            this._dependencies = abhaengigkeiten;
+        }
+        
+        get dependencies() {
+            return this._dependencies;
+        }
+        
+        set addDependencie(dependency) {
+            this._dependencies.push(dependency);
+        }
+        
+        topSort() {
+        
+            var indeg = this.getIndegrees();
+            var sortierung = [];
+        
+        
+            while ( Object.entries(indeg).length > 0){
+                let entry = Object.entries(indeg);
+                for (let i=entry.length-1; i>=0; i--){
+                    if( entry[i][1] === 0 ){
+        
+                        sortierung.push(entry[i][0]);
+                        this._dependencies.forEach( element => {
+                            if(element[0] === entry[i][0]) {
+                                if(indeg[element[1]]) {
+                                indeg[ element[1] ]--;
+                                }
+                            }
+                        });
+                        delete indeg[entry[i][0]];
+                    }
+                }
+        
+            }
+            return sortierung;
+        
+        }
+        
+        getIndegrees() {
+            var indegrees = {};
+            for(let i=0 ; i < this._dependencies.length; i++){
+                if(!(indegrees.hasOwnProperty(this._dependencies[i][0]))){
+                    indegrees[this._dependencies[i][0]] = 0;
+                }
+                if(indegrees.hasOwnProperty(this._dependencies[i][1])){
+                    indegrees[this._dependencies[i][1]] ++;
+                } else {
+                    indegrees[this._dependencies[i][1]] = 1;
+                }
+            }
+            return indegrees;
+        }
+    }  
+    
+    const vorrang = new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen", "essen"] ]);
+    console.assert(JSON.stringify(["schlafen","essen","studieren","prüfen"]) === JSON.stringify(vorrang.topSort()) );
+
+    console.log(new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen", "essen"] ]).topSort());
+    </textarea>
+    <p>In der Console steht das Ergebnis von new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen", "essen"]
+    ]).topSort()</p>
+    <br>
 
 
 <script>

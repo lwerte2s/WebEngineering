@@ -3,8 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>5-5</title>
+
+        <style>
+            textarea {
+                resize: none;
+                background-color: rgb(44, 44, 44);
+                color: rgb(178, 222, 252);
+            }
+        
+            h1 {
+                border-bottom: 2px solid green;
+                padding-bottom: 3px;
+            }
+        
+            p {
+                font-size: 15px;
+                padding-bottom: 3px;
+                border-bottom: 2px solid green;
+            }
+        </style>
+
 </head>
 <body>
+
+
+    <h1>5.5. DeepCopy</h1>
+    
+    
+    <h2>Kompletter Code der Funktion deepCopy:</h2>
+    <textarea disabled cols="200" rows="32">
+    const deepCopy = (myObject) => {
+        let copy;
+
+        if(typeof myObject !== "object"  || myObject == null){
+            return myObject;
+        }
+
+        copy = Array.isArray(myObject) ? [] : {};
+
+        for( let key in myObject){
+            let value = myObject[key];
+
+            copy[key] = deepCopy(value);
+        }
+
+        return copy;
+    }
+
+
+    const testArray = [[[1,2],[3,4]],[1,2,3,4]];
+    const testObject = { myarray: [[[1,2],[3,4]],[1,2,3,4]], hello: "world"};
+
+    const test1 = deepCopy(testArray);
+    console.assert(test1[0][0] !== testArray[0][0] && test1[0][0][0] === testArray[0][0][0]);
+
+    const test2 = deepCopy(testObject);
+    console.assert(test2["myarray"][0][0] !== testObject["myarray"][0][0] && test2["myarray"][0][0][0] === testObject["myarray"][0][0][0]);
+
+    console.log(deepCopy(testArray));
+    console.log(deepCopy(testObject));
+                 
+    </textarea>
+    <p>In der Console sind die Kopien von "testArray" und "testObject" zu sehen.</p>
+    <br>
+
 
 <script>
 

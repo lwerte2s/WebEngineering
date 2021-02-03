@@ -3,42 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>U4-4</title>
+
+    <style>
+        .frage {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(107, 106, 106);
+            padding-top: 5px;
+            border-top: 2px solid green;
+            border-bottom: 2px solid green;
+        }
+
+        .antwort {
+            font-size: 20px;
+        }
+
+    </style>
 </head>
 <body>
 
-<h1 id="indeg"></h1>
+<h1>Topsort</h1>
+<p class="frage">Topologische Sortierung von [ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ] ist gleich:</p>
+<p class="antwort" id="topo"></p>
+<br>
+<p class="frage">Topologische Sortierung von [ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["prüfen","urlaub"], ["trinken", "essen"],["schlafen","trinken"] ] ist gleich:</p>
+<p class="antwort" id="topo2"></p>
 
 <script>
 
 
-    function topsort( abhaehngigkeiten )  {
+    function topsort(inputarray)  {
 
-        var indeg = getIndegree(abhaehngigkeiten);
-        var sortierung = {};
-        var newObject = {};
-        for (i=0; i< abhaehngigkeiten.length; i++){
-             newObject[abhaehngigkeiten[i][0]] = abhaehngigkeiten[i][1];
-        }
-        console.log(newObject);
+            var indeg = getIndegree(inputarray);
+            var sortierung = [];
 
-        var j = 0;
 
-        while ( Object.entries(indeg).length > 0){
-            let entry = Object.entries(indeg);
-            for (let i=entry.length-1; i>=0; i--){
-                if( entry[i][1] === 0 ){
+            while (Object.entries(indeg).length > 0) {
+                let entry = Object.entries(indeg);
+                for (let i = entry.length - 1; i >= 0; i--) {
+                    if (entry[i][1] === 0) {
 
-                    sortierung[j] = entry[i][0];
-                    j++;
-                    if(newObject[entry[i][0]]) {indeg[ newObject[entry[i][0]] ]--;}
-                    delete indeg[entry[i][0]];
+                        sortierung.push(entry[i][0]);
+                        inputarray.forEach(element => {
+                            if (element[0] === entry[i][0]) {
+                                if (indeg[element[1]]) {
+                                    indeg[element[1]]--;
+                                }
+                            }
+                        });
+                        delete indeg[entry[i][0]];
+                    }
                 }
+
             }
+            return sortierung;
 
         }
-        return sortierung;
-
-    }
 
 
 
@@ -61,8 +81,9 @@
 
 
 
-    console.log(topsort([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ]));
-    //document.getElementById("indeg").innerHTML = topsort([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ]);
+    //console.log(topsort([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ]));
+    document.getElementById("topo").innerHTML = topsort([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ]);
+    document.getElementById("topo2").innerHTML = topsort([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["prüfen","urlaub"], ["trinken", "essen"],["schlafen","trinken"] ]);
 
 </script>
 </body>

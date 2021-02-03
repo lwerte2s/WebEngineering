@@ -3,9 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <title>5-3</title>
+
+        <style>
+            textarea {
+                resize: none;
+                background-color: rgb(44, 44, 44);
+                color: rgb(178, 222, 252);
+            }
+        
+            h1 {
+                border-bottom: 2px solid green;
+                padding-bottom: 3px;
+            }
+        
+            p {
+                font-size: 15px;
+                padding-bottom: 3px;
+                border-bottom: 2px solid green;
+            }
+        </style>
 </head>
 <body>
-<script>
+<h1>5.3. Topologischer Generator</h1>
+
+
+    <h2> Die Iterierbarkeit der Klasse wird jetzt mit einer Generator-Methode hergestellt. Die Methode [Symbol.iterator] sieht nun so aus:</h2>
+    <textarea disabled cols="200" rows="8">
+                * [Symbol.iterator](){
+                    const values = this.topSort();
+                    let i = 0;
+                    for( let value in values){
+                        yield values[i++];
+                    }
+                }  
+    </textarea>
+    <h2>Kompletter Code der Klasse Vorrang:</h2>
+    <textarea disabled cols="200" rows="87">
+            class Vorrang{
+                constructor(abhaengigkeiten) {
+                    this._dependencies = abhaengigkeiten;
+                }
+                
+                get dependencies() {
+                    return this._dependencies;
+                }
+                
+                set addDependencie(dependency) {
+                    this._dependencies.push(dependency);
+                }
+                
+                topSort() {
+                
+                    var indeg = this.getIndegrees();
+                    var sortierung = [];
+                
+                
+                    while ( Object.entries(indeg).length > 0){
+                        let entry = Object.entries(indeg);
+                        for (let i=entry.length-1; i>=0; i--){
+                            if( entry[i][1] === 0 ){
+                
+                                sortierung.push(entry[i][0]);
+                                this._dependencies.forEach( element => {
+                                    if(element[0] === entry[i][0]) {
+                                        if(indeg[element[1]]) {
+                                        indeg[ element[1] ]--;
+                                        }
+                                    }
+                                });
+                                delete indeg[entry[i][0]];
+                            }
+                        }
+                
+                    }
+                    return sortierung;
+                
+                }
+                
+                getIndegrees() {
+                    var indegrees = {};
+                    for(let i=0 ; i < this._dependencies.length; i++){
+                        if(!(indegrees.hasOwnProperty(this._dependencies[i][0]))){
+                            indegrees[this._dependencies[i][0]] = 0;
+                        }
+                        if(indegrees.hasOwnProperty(this._dependencies[i][1])){
+                            indegrees[this._dependencies[i][1]] ++;
+                        } else {
+                            indegrees[this._dependencies[i][1]] = 1;
+                        }
+                    }
+                    return indegrees;
+                }
+
+
+
+                * [Symbol.iterator](){
+                    const values = this.topSort();
+                    let i = 0;
+                    for( let value in values){
+                        yield values[i++];
+                    }
+                }
+            }  
+            
+
+            //Test des Iterators
+            const vorrang = new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen",
+            "essen"] ]);
+            
+            let myIterator = vorrang[Symbol.iterator]();
+            console.assert('{"value":"schlafen","done":false}' === JSON.stringify(myIterator.next()));
+            console.assert('{"value":"essen","done":false}' === JSON.stringify(myIterator.next()));
+            console.assert('{"value":"studieren","done":false}' === JSON.stringify(myIterator.next()));
+            console.assert('{"value":"prüfen","done":false}' === JSON.stringify(myIterator.next()));
+            console.assert('{"done":true}' === JSON.stringify(myIterator.next()));
+            
+            
+            
+            for( const x of vorrang){
+                console.log(x);
+            }
+
+    </textarea>
+    <p>In der Console steht das Ergebnis von new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren",
+    "prüfen"], ["schlafen", "essen"]]) mit einer for.. of Schleife iteriert</p>
+    <br>
+    <script>
 
     class Vorrang{
         constructor(abhaengigkeiten) {
@@ -93,7 +216,7 @@
     }
 
 
-</script>
+    </script>
 
 
 </body>

@@ -1,6 +1,6 @@
 
 function identity_function(x) {
-    return (x) => { return x; }
+    return () => { return x; }
 }
 
 //---------------------------------
@@ -32,6 +32,10 @@ function add(x,y) {
     return x+y;
 }
 
+function mul(x,y) {
+    return x*y;
+}
+
 function inc(x) {
     return curry(add,1)(x);
 }
@@ -50,7 +54,7 @@ function methodize(f) {
 //------------------------------------
 function demethodize(method) {
     return function (x,y) {
-        x.method(y);
+        return method.call(x,y);
     }
 }
 
