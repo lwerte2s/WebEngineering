@@ -1,6 +1,6 @@
 export default {
     probs:['mytext', 'words', 'spaces' ],
-        template: '<div><textarea v-model="mytext"></textarea>'+
+    template: '<div><textarea v-model="mytext"></textarea>'+
         '<p>Anzahl der Wörter: {{count(mytext)[0]}}</p>'+
         '<p>Anzahl der Buchstaben: {{count(mytext)[1]}}</p>'+
         '<p>Anzahl der  Leerzeichen: {{count(mytext)[2]}}</p></div>',

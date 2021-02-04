@@ -164,7 +164,7 @@ export default {
                 },
                 {
                     name: "Menü-Komponente",
-                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U9/9-2_menu/dist/index.html",
+                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U9/9-2/index.html",
                 },
                 {
                     name: "WWW-Navigator",
