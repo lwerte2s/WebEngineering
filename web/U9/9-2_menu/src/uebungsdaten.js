@@ -3,7 +3,7 @@ export default {
     topics: [
         {
             name: "U1",
-            url: "../U1",
+            topic: "HTTP, URI und HTML",
             subtopics: [
                 {
                     name: "WWW Erfolgsprinzipien",
@@ -25,7 +25,7 @@ export default {
         },
         {
             name: "U2",
-            url: "../U2",
+            topic: "CSS 1.Teil",
             subtopics: [
                 {
                     name: "CSS Selektoren und Farben",
@@ -43,7 +43,7 @@ export default {
         },
         {
             name: "U3",
-            url: "../U3",
+            topic: "CSS 2.Teil",
             subtopics: [
                 {
                     name: "Flexbox",
@@ -61,7 +61,7 @@ export default {
         },
         {
             name: "U4",
-            url: "../U4",
+            topic: "JavaScript",
             subtopics: [
                 {
                     name: "Funktionen",
@@ -83,7 +83,7 @@ export default {
         },
         {
             name: "U5",
-            url: "../U5",
+            topic: "ECMAScript",
             subtopics: [
                 {
                     name: "Vorrang",
@@ -110,7 +110,7 @@ export default {
         },
         {
             name: "U6",
-            url: "../U6",
+            topic: "Functional",
             subtopics: [
                 {
                     name: "Funktionen in JS",
@@ -124,7 +124,7 @@ export default {
         },
         {
             name: "U7",
-            url: "../U7",
+            topic: "DOM",
             subtopics: [
                 {
                     name: "Performanzmessungen",
@@ -138,7 +138,7 @@ export default {
         },
         {
             name: "U8",
-            url: "../U8",
+            topic: "Async",
             subtopics: [
                 {
                     name: "Promises",
@@ -156,7 +156,7 @@ export default {
         },
         {
             name: "U9",
-            url: "../U9",
+            topic: "Vue",
             subtopics: [
                 {
                     name: "Vue Komponente",
@@ -164,7 +164,7 @@ export default {
                 },
                 {
                     name: "Menü-Komponente",
-                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U9/9-2/index.html",
+                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U9/9-2_menu/index.html",
                 },
                 {
                     name: "WWW-Navigator",
@@ -175,7 +175,7 @@ export default {
         },
         {
             name: "U10",
-            url: "../U10",
+            topic: "PHP",
             subtopics: [
                 {
                     name: "Login",
