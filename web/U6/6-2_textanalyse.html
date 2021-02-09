@@ -33,53 +33,58 @@
             padding-top: 5px;
             border-bottom: 2px solid green;
         }
+
+        .green {
+            color: green;
+            font-size: 2rem;
+        }
     </style>
 </head>
-    <h1>6.2. Textanalyse mit filter-map-reduce</h1>
-    <h2 class="frage">Schreiben Sie in JavaScript eine Textanalyse. Ermitteln Sie die häufigsten Begriffe im Text Plagiatsresolution. Filtern
+<h1>6.2. Textanalyse mit filter-map-reduce</h1>
+<h2 class="frage">Schreiben Sie in JavaScript eine Textanalyse. Ermitteln Sie die häufigsten Begriffe im Text Plagiatsresolution. Filtern
     Sie dabei alle Stoppworte und HTML-Tags. Reduzieren Sie das Ergebnis auf die 3 häufigsten Begriffe.</h2>
-    <p id="mytext" class="text"></p>
+<p id="mytext" class="text"></p>
 
-    <h2 id="haeufigste"></h2>
+<h2 id="haeufigste"></h2>
 <body>
 
-    <script type=module>
+<script type=module>
 
-        import {stopWords} from './stopwords.js';
+    import {stopWords} from './stopwords.js';
 
-        async function getText () {
-            let text = await fetch("https://kaul.inf.h-brs.de/we/assets/html/plagiatsresolution.html");
-            text = await text.text();
-            document.getElementById("mytext").innerHTML = text;
-            return text;
-        };
+    async function getText () {
+        let text = await fetch("https://kaul.inf.h-brs.de/we/assets/html/plagiatsresolution.html");
+        text = await text.text();
+        document.getElementById("mytext").innerHTML = text;
+        return text;
+    };
 
-        function stopwordFilter(word) {
-            return (stopWords.find(stopwords => stopwords.includes(word.toLowerCase())) === undefined);
-        }
+    function stopwordFilter(word) {
+        return (stopWords.find(stopwords => stopwords.includes(word.toLowerCase())) === undefined);
+    }
 
-        function analyseText(text) {
-            let counter = {};
-            text = text.toString().replace(/<[^>]+>/g, '');
-            text.split(" ")
-                .filter(x => x.trim())
-                .filter(stopwordFilter)
-                .map( (x) => {return  counter[x] ? counter[x] += 1 : counter[x]= 1});
+    function analyseText(text) {
+        let counter = {};
+        text = text.toString().replace(/<[^>]+>/g, '');
+        text.split(" ")
+            .filter(x => x.trim())
+            .filter(stopwordFilter)
+            .map( (x) => {return  counter[x] ? counter[x] += 1 : counter[x]= 1});
 
-            let counterSorted = Object.keys(counter).sort(function (a, b) { return counter[b] - counter[a] })
-            return [counterSorted[0], counterSorted[1], counterSorted[2]]
-        }
+        let counterSorted = Object.keys(counter).sort(function (a, b) { return counter[b] - counter[a] })
+        return [counterSorted[0], counterSorted[1], counterSorted[2]]
+    }
 
-        let txt; 
-        (async ()=> {
-            txt = await getText();
-            let haeufigste = analyseText(txt)
-            console.log(haeufigste);
-            document.getElementById("haeufigste").innerHTML = "Die drei häufigsten Wörter sind:"+ haeufigste;  
-        })()
-        
+    let txt;
+    (async ()=> {
+        txt = await getText();
+        let haeufigste = analyseText(txt)
+        console.log(haeufigste);
+        document.getElementById("haeufigste").innerHTML = "Die drei häufigsten Wörter sind: <p class='green'>"+haeufigste+"</p>";
+    })()
 
-    </script>
+
+</script>
 
 
 </body>

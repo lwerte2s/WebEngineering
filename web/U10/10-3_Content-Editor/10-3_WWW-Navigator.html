@@ -14,7 +14,6 @@
             height: 100%;
             margin: 0;
             display: grid;
-            height: 100%;
             grid-template-areas:
                     'header'
                     'navibar'
@@ -32,7 +31,7 @@
 
         .header h1 {
             font-family: "Calibri Light";
-            font-size: 30px;
+            font-size: 2rem;
             text-align: center;
             grid-area: header;
 
@@ -40,7 +39,7 @@
 
         #top .navibar {
             border: none;
-            padding: 0px;
+            padding: 0;
             width: 100%;
             background-color: #2a3345;
             grid-area: navibar;
@@ -51,7 +50,7 @@
             background-color: rgb(35, 39, 47);
 
             text-align: center;
-            font-size: 2vh;
+            font-size: 1.5rem;
             padding: 2vh 1vw;
             border: none;
             grid-row: 1
@@ -64,9 +63,9 @@
         }
 
         #mid .leftcolumn {
-            background-color: #535b6b;
+            background-color:#2a3345;
             grid-area: left;
-            width: 10vw;
+            min-width: 10vw;
             height: 80vh;
         }
 
@@ -74,11 +73,11 @@
             grid-area: mid;
             border: 2px solid brown;
             width: 79vw;
-            font-size: 20px;
+            font-size: 30px;
         }
 
         #mid .rightcolumn {
-            background-color: #535b6b;
+            background-color: #2a3345;
             grid-area: right;
             width: 100%;
         }
@@ -88,7 +87,7 @@
             background-color: rgb(35, 39, 47);
 
             text-align: center;
-            font-size: 2vh;
+            font-size: 1.2rem;
             padding: 2vh 1vw;
             border: none;
             width: 100%;
@@ -96,13 +95,10 @@
         }
 
         .rightcolumn a {
-            font-size: 0.7rem;
-            color: #e5c432;
+            font-size: 1rem;
+            color: aliceblue;
             word-break: break-word;
-        }
-
-        .rightcolumn a:hover {
-            color: white;
+            padding: 5px;
         }
 
         .rightcolumn p {
@@ -111,6 +107,15 @@
             color: #e5c432;
             border-bottom: 2px solid white;
             padding: 5px;
+        }
+
+        .rightcolumn a:hover {
+            color: #e5c432;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
         }
 
 
@@ -123,28 +128,30 @@
 
 
 
-    <div id="top">
-        <div class="header">
-            <h1>WWW-Navigator</h1>
-        </div>
-
-        <div class="navibar">
-            <button id="html" class="button">HTML</button>
-            <button id="css" class="button">CSS</button>
-            <button id="js" class="button">JavaScript</button>
-        </div>
+<div id="top">
+    <div class="header">
+        <h1>WWW-Navigator</h1>
     </div>
 
-    <div id="mid">
-        <div id="sidenav" class="leftcolumn"></div>
-
-        <div id="content" class="middlecolumn"></div>
-
-        <div id="references" class="rightcolumn">
-            <p class="rightcolumn">Links to external Ressources:</p>
-        </div>
-
+    <div class="navibar">
+        <button id="html" class="button">HTML</button>
+        <button id="css" class="button">CSS</button>
+        <button id="js" class="button">JavaScript</button>
+        <button id="edit" class="button">Edit Content</button>
     </div>
+</div>
+
+<div id="mid">
+    <div id="sidenav" class="leftcolumn"></div>
+
+    <div id="content" class="middlecolumn"></div>
+
+
+    <div id="references" class="rightcolumn">
+        <p class="rightcolumn">Links to external Ressources:</p>
+    </div>
+
+</div>
 
 </div>
 
@@ -160,7 +167,7 @@
 
 
     async function generateButtons(title) {
-        let data = await fetchData("http://www2.inf.h-bonn-rhein-sieg.de/~lwerte2s/web/U8/navigatorData");
+        let data = await fetchData("./navigatorData.json");
         console.log(data[title]);
 
         document.getElementById("sidenav").innerText = "";
@@ -174,6 +181,9 @@
             button.id = key;
             document.getElementById("sidenav").appendChild(div);
         }
+
+        //delete content
+        document.getElementById('content').innerText = "";
     }
 
 
@@ -182,7 +192,7 @@
         console.log(subtitle);
         document.getElementById("content").innerText = subtitle["content"];
         //create references
-        document.getElementById("references").innerHTML = "<p class='rightcolumn'>Links to external Ressources:</p>";
+        document.getElementById("references").innerHTML = "<p class=\"rightcolumn\">Links to external Ressources:</p> ";
         let div = document.createElement('div');
         document.getElementById("references").appendChild(div);
         let link = document.createElement('a');
@@ -191,9 +201,25 @@
         div.appendChild(link);
     }
 
+    async function edit(){
+        /*let response = await (await fetch('./content-eingabe.php')).text();
+         document.getElementById("content").innerHTML = response;
+         */
+        let editpage = document.createElement("iframe");
+        editpage.src = "./content-eingabe.php";
+        let content = document.getElementById("content");
+        let sidenav = document.getElementById("sidenav");
+        let references = document.getElementById("references");
+        content.innerText = "";
+        sidenav.innerText = "";
+        references.innerHTML = "<p class=\"rightcolumn\">Links to external Ressources:</p> ";
+        content.appendChild(editpage);
+    }
+
     document.getElementById("html").addEventListener("click", () =>{generateButtons("html") });
     document.getElementById("css").addEventListener("click", () =>{generateButtons("css") });
     document.getElementById("js").addEventListener("click", () =>{generateButtons("javascript") });
+    document.getElementById("edit").addEventListener("click", () => { edit() });
 
 
 

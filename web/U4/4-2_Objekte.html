@@ -1,26 +1,227 @@
-
 <!DocType html>
 <html lang="de">
 <head>
-    <title>You dont know</title>
+    <title>4-2</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+
+
+        .frage {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(107, 106, 106);
+            padding-top: 5px;
+            border-top: 2px solid green;
+            border-bottom: 2px solid green;
+        }
+
+        textarea {
+            display: inline;
+            resize: none;
+            background-color: rgb(36, 36, 36);
+            color
+            : rgb(154, 215, 255);
+        }
+
+        .tests {
+            font-size: 1rem;
+            text-decoration: underline;
+        }
+
+        .border {
+            border-bottom: 2px solid green;
+            width: 100%;
+        }
 
     </style>
 </head>
 <body>
 
-<h1 id="header"></h1>
-<h1 id="header2"></h1>
+<h1>4.2. Objekte</h1>
+<p class="frage">Schreiben Sie die Prototypen Person und Auto in JavaScript, so dass jede Person weiß, welche Autos sie besitzt.
+    Schreiben Sie eine Funktion conflict(), die feststellt, ob ein Auto von mehr als einer Person besessen wird.</p>
+<textarea disabled cols="60" rows="44">
+
+let Auto = {
+    toString: function() {
+        return "Auto: "+ this.kennzeichen;
+    },
+    addBesitzer: function(person) {
+        if(this.besitzer){
+            this.besitzer.push(person);
+        } else {
+            this.besitzer = [];
+            this.besitzer.push(person);
+        }
+
+    }
+};
+
+let Person = {
+    toString: function() {
+        let myreturn = "Person: "+ this.name+ " Autos:";
+        for( let car of this.autos){
+            myreturn += car.kennzeichen+" "
+        }
+        return myreturn;
+    },
+    addAuto: function(auto){
+        auto.addBesitzer(this);
+        if (this.autos) {
+            this.autos.push(auto);
+        } else {
+            this.autos = [];
+            this.autos.push(auto);
+        }
+    }
+}
+
+function conflict(auto){
+    return (auto.besitzer.length > 1)
+}
+
+</textarea>
+<textarea disabled cols="60" rows="44">
+
+let john = {
+    __proto__: Person,
+    name: "John"
+}
+
+let jeff = {
+    __proto__: Person,
+    name: "Jeff"
+}
+
+let car_x = {
+    __proto__: Auto,
+    kennzeichen: "xx"
+}
+
+let car_y = {
+    __proto__: Auto,
+    kennzeichen: "yy"
+}
+
+let car_z = {
+    __proto__: Auto,
+    kennzeichen: "zz"
+}
+
+//Test 1
+john.addAuto(car_x);
+console.log(john.toString());
+console.log("Conflict x:" + conflict(car_x));
+
+//Test 2
+jeff.addAuto(car_y);
+jeff.addAuto(car_z);
+console.log(jeff.toString());
+console.log("Conflict y:" + conflict(car_y));
+console.log("Conflict z:" + conflict(car_z));
+
+//Test3
+john.addAuto(car_z);
+console.log(john.toString());
+console.log("Conflict x:" + conflict(car_x));
+console.log("Conflict z:" + conflict(car_z));
+</textarea>
+<br>
+<p class="tests">Test 1:</p>
+<p id="test1"></p>
+<p class="tests">Test 2:</p>
+<p id="test2"></p>
+<p class="tests">Test 3:</p>
+<p id="test3"></p>
+<p class="border"></p>
+
 
 <script>
 
-    var auto = {kennzeichen:"xx" };
+    let Auto = {
+        toString: function() {
+            return "Auto: "+ this.kennzeichen;
+        },
+        addBesitzer: function(person) {
+            if(this.besitzer){
+                this.besitzer.push(person);
+            } else {
+                this.besitzer = [];
+                this.besitzer.push(person);
+            }
+
+        }
+    };
+
+    let Person = {
+        toString: function() {
+            let myreturn = "Person: "+ this.name+ ", Autos:";
+            for( let car of this.autos){
+                myreturn += car.kennzeichen+" "
+            }
+            return myreturn;
+        },
+        addAuto: function(auto){
+            auto.addBesitzer(this);
+            if (this.autos) {
+                this.autos.push(auto);
+            } else {
+                this.autos = [];
+                this.autos.push(auto);
+            }
+        }
+    }
+
+    function conflict(auto){
+        return (auto.besitzer.length > 1)
+    }
 
 
+    let john = {
+        __proto__: Person,
+        name: "John"
+    }
 
-    document.getElementById("header2").innerHTML = auto;
+    let jeff = {
+        __proto__: Person,
+        name: "Jeff"
+    }
+
+    let car_x = {
+        __proto__: Auto,
+        kennzeichen: "xx"
+    }
+
+    let car_y = {
+        __proto__: Auto,
+        kennzeichen: "yy"
+    }
+
+    let car_z = {
+        __proto__: Auto,
+        kennzeichen: "zz"
+    }
+
+    john.addAuto(car_x);
+    console.log(john.toString());
+    console.log("Conflict x:" + conflict(car_x));
+    document.getElementById("test1").innerHTML += "john.toString() = "+ john.toString()+ "<br> conflict(car_x) = "+ conflict(car_x);
+
+    jeff.addAuto(car_y);
+    jeff.addAuto(car_z);
+    console.log(jeff.toString());
+    console.log("Conflict y:" + conflict(car_y));
+    console.log("Conflict z:" + conflict(car_z));
+    document.getElementById("test2").innerHTML += "jeff.toString() = " + jeff.toString() + "<br> conflict(car_y) = " + conflict(car_y)+ "<br> conflict(car_z) = " + conflict(car_z);
+
+    john.addAuto(car_z);
+    console.log(john.toString());
+    console.log("Conflict x:" + conflict(car_x));
+    console.log("Conflict z:" + conflict(car_z));
+    document.getElementById("test3").innerHTML += "john.toString() = " + john.toString() + "<br> conflict(car_x) = " + conflict(car_x) + "<br> conflict(car_z) = " + conflict(car_z);
+
+
 
 </script>
 
