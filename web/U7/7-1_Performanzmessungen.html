@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Performanzmessungen</title>
+    <title>7-1 Performanzmessungen</title>
     <style>
         table {
             background-color: palegreen;
@@ -10,12 +10,20 @@
         }
         th, tr, td {
             border: 2px solid black;
-            padding: 3px 6px ;
+            padding: 0.5rem 1rem;
+        }
+
+        button {
+            padding: 0.6rem 3rem;
+        }
+
+        .head {
+            border-bottom: 2px solid green;
         }
     </style>
 </head>
 <body>
-    <h1>Performancemessungen</h1>
+    <h1 class="head">7.1. Performanzmessungen von DOM-Operationen</h1>
     <button onclick="measureInnerHTML()">innerHTML</button>
     <button onclick="measureInnerText()">innerText</button>
     <button onclick="measureTextContent()">textContent</button>

@@ -55,7 +55,7 @@ img {
 }
 
 .subtopics {
-  padding: 40px, 0;
+  padding: 40px 0;
 }
 
 p {
