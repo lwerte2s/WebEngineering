@@ -57,7 +57,7 @@
         text = await text.text();
         document.getElementById("mytext").innerHTML = text;
         return text;
-    };
+    }
 
     function stopwordFilter(word) {
         return (stopWords.find(stopwords => stopwords.includes(word.toLowerCase())) === undefined);

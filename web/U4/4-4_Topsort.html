@@ -34,8 +34,8 @@
 
     function topsort(inputarray)  {
 
-            var indeg = getIndegree(inputarray);
-            var sortierung = [];
+            let indeg = getIndegree(inputarray);
+            let sortierung = [];
 
 
             while (Object.entries(indeg).length > 0) {
@@ -64,8 +64,8 @@
 
 
     function getIndegree(abhaengigkeiten) {
-        var indegrees = {};
-        for(i=0 ; i < Object.keys(abhaengigkeiten).length; i++){
+        let indegrees = {};
+        for(let i=0 ; i < Object.keys(abhaengigkeiten).length; i++){
             if(!(indegrees.hasOwnProperty(abhaengigkeiten[i][0]))){
                 indegrees[abhaengigkeiten[i][0]] = 0;
             }
@@ -82,8 +82,8 @@
 
 
     //console.log(topsort([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ]));
-    document.getElementById("topo").innerHTML = topsort([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ]);
-    document.getElementById("topo2").innerHTML = topsort([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["prüfen","urlaub"], ["trinken", "essen"],["schlafen","trinken"] ]);
+    document.getElementById("topo").innerHTML = topsort([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"] ]).toString();
+    document.getElementById("topo2").innerHTML = topsort([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["prüfen","urlaub"], ["trinken", "essen"],["schlafen","trinken"] ]).toString();
 
 </script>
 </body>

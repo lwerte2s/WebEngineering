@@ -37,7 +37,7 @@ Fibonacci-Zahl in der Fibonacci-Folge ist das (d.h. welche Stelle in der Fibonac
 
 <script>
 
-    var i = 0;
+    let i = 0;
 
     function fibonacci(num, alreadyCalculated) {
         alreadyCalculated = alreadyCalculated || {};
@@ -52,7 +52,7 @@ Fibonacci-Zahl in der Fibonacci-Folge ist das (d.h. welche Stelle in der Fibonac
             return 1;
         }
 
-        var fib = BigInt(fibonacci(num - 1, alreadyCalculated)) + BigInt(fibonacci(num - 2, alreadyCalculated));
+        let fib = BigInt(fibonacci(num - 1, alreadyCalculated)) + BigInt(fibonacci(num - 2, alreadyCalculated));
         alreadyCalculated[num] = fib;
         i = i+1;
         console.log("number:"+ i);

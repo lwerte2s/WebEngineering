@@ -113,8 +113,8 @@
 
         topSort()  {
 
-            var indeg = this.getIndegrees();
-            var sortierung = [];
+            let indeg = this.getIndegrees();
+            let sortierung = [];
 
 
             while ( Object.entries(indeg).length > 0){
@@ -141,7 +141,7 @@
 
 
         getIndegrees() {
-            var indegrees = {};
+            let indegrees = {};
             for(let i=0 ; i < this._dependencies.length; i++){
                 if(!(indegrees.hasOwnProperty(this._dependencies[i][0]))){
                     indegrees[this._dependencies[i][0]] = 0;
