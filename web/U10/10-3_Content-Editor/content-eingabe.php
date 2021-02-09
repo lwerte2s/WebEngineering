@@ -2,11 +2,11 @@
 <html lang="de">
 
 <head>
-    <meta charset="UTF-8">
-    <title>10-3</title>
+  <meta charset="UTF-8">
+  <title>10-3</title>
 
 </head>
-<body>
+
 
 
 <style>
@@ -57,7 +57,6 @@
         text-align: center;
         font-size: 2vh;
         padding: 0.5vh;
-        border: none;
         width: 50rem;
         margin-top: 2px;
         border: 1px solid white;
@@ -73,27 +72,29 @@
 
 
 </style>
+
+<body>
 <form  id="edit-form">
-    <fieldset>
-        <legend>Select a topic and add new text:</legend>
-        <select  name="top_header" id="top_header">
-            <option value="" disabled selected >Select Topic</option>
-            <option value="html">HTML</option>
-            <option value="css">CSS</option>
-            <option value="javascript">JavaScript</option>
-        </select>
-        <select name="sub_header" id="sub_header">
-        </select>
-        <textarea name="content" id="content"></textarea>
-        <button id="btn">Save</button>
-    </fieldset>
+  <fieldset>
+    <legend>Select a topic and add new text:</legend>
+    <select  name="top_header" id="top_header">
+      <option value="" disabled selected >Select Topic</option>
+      <option value="html">HTML</option>
+      <option value="css">CSS</option>
+      <option value="javascript">JavaScript</option>
+    </select>
+    <select name="sub_header" id="sub_header">
+    </select>
+    <textarea name="content" id="content"></textarea>
+    <button id="btn">Save</button>
+  </fieldset>
 </form>
 <script type="text/javascript">
-<?PHP
- $file = './navigatorData.json';
- $contents = file_get_contents( $file );
- $json = json_decode( $contents, true );
-?>
+    <?PHP
+    $file = './navigatorData.json';
+    $contents = file_get_contents( $file );
+    $json = json_decode( $contents, true );
+    ?>
     let json = <?PHP echo json_encode($json) ?>;
     const top_header = document.querySelector('select[name="top_header"]');
     const sub_header = document.querySelector('select[name="sub_header"]');
@@ -106,7 +107,7 @@
             sub_header.append(option);
         });
 
-        sub_header.addEventListener('change', e => {
+        sub_header.addEventListener('change', () => {
             let header = document.getElementById('top_header').value;
             let subheader = document.getElementById('sub_header').value;
             document.getElementById('content').innerHTML = json[header][subheader]['content'];
@@ -120,13 +121,13 @@
     });
 
 
-document.getElementById('btn').addEventListener('click', async function(event) {
-    //event.preventDefault();
-    let response = await (await fetch(new Request("./edit-content.php"), {
-        method: "POST",
-        body: new FormData( document.getElementById('edit-form'))
-    }));
-});
+    document.getElementById('btn').addEventListener('click', async function() {
+        //event.preventDefault();
+        await (await fetch(new Request("./edit-content.php"), {
+            method: "POST",
+            body: new FormData( document.getElementById('edit-form'))
+        }));
+    });
 
 </script>
 </body>
