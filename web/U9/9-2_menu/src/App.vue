@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1 class="head">9.2. Menü-Komponente</h1>
     <the-navigation></the-navigation>
     <the-navigation  v-bind:vertical="true"></the-navigation>
   </div>
@@ -26,4 +27,7 @@ export default {
   margin-top: 60px;
 }
 
+.head {
+  border-bottom: 2px solid green;
+}
 </style>
