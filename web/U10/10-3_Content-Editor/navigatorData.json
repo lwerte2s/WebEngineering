@@ -13,7 +13,7 @@
             ]
         },
         "table": {
-            "content": "insert content",
+            "content": "insert content\r\n ",
             "references": []
         }
     },

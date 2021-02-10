@@ -164,11 +164,11 @@ export default {
                 },
                 {
                     name: "Menü-Komponente",
-                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U9/9-2_menu/index.html",
+                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U9/9-2_menu/dist/index.html",
                 },
                 {
                     name: "WWW-Navigator",
-                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U9/9-3/index.html",
+                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U9/9-3_www-navigator/dist/index.html",
                 }
             ]
             
@@ -184,6 +184,10 @@ export default {
                 {
                     name: "Registrierung",
                     url: "http://www2.inf.h-brs.de/~lwerte2s/web/U10/register.html",
+                },
+                {
+                    name: "Content-Editor",
+                    url: "http://www2.inf.h-brs.de/~lwerte2s/web/U10/10-3_Content-Editor/10-3_WWW-Navigator.html",
                 }
             ]    
         }

@@ -139,7 +139,7 @@
     });
 
 
-document.getElementById('btn').addEventListener('click', async function() {
+document.getElementById('btn').addEventListener('click', async function(event) {
     //event.preventDefault();
     await (await fetch(new Request("./edit-content.php"), {
         method: "POST",
