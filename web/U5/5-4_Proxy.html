@@ -143,7 +143,6 @@
         console.log(x);
     }
     </textarea>
-    <p>In der Console </p>
     <br>
 
 
@@ -225,48 +224,42 @@
 
 
     // Proxy-handler
-    const handler = {
-        i: 4,
-        get: function(target, prop, receiver){
-            const myMethod = target[prop];
-            let i = this.i--;
-            return function (...args) {
-                console.log(i);
-                let result = myMethod.apply(target,args);
+        const handler = {
+            i: 4,
+            get: function (target, prop, receiver) {
+                const myMethod = target[prop];
+                let i = this.i--;
+                return function (...args) {
+                    console.log(i);
+                    let result = myMethod.apply(target, args);
+                    return result;
+                };
+            }
+            /*,
+            apply: function( target, thisArg ) {
+                console.log("hi");
+                var result = target();
+                console.log("hallo");
                 return result;
-            };
+            }*/
+        };
+
+        const vorrang = new Vorrang([["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen", "essen"]]);
+
+        //console.log(proxy["dependencies"])
+
+        let myIterator = vorrang[Symbol.iterator]();
+        const proxy = new Proxy(myIterator, handler);
+
+        console.assert('{"value":"schlafen","done":false}' === JSON.stringify(proxy.next()));
+        console.assert('{"value":"essen","done":false}' === JSON.stringify(proxy.next()));
+        console.assert('{"value":"studieren","done":false}' === JSON.stringify(proxy.next()));
+        console.assert('{"value":"prüfen","done":false}' === JSON.stringify(proxy.next()));
+        console.assert('{"done":true}' === JSON.stringify(proxy.next()));
+
+        for (const x of vorrang) {
+            console.log(x);
         }
-        /*,
-        apply: function( target, thisArg ) {
-            console.log("hi");
-            var result = target();
-            console.log("hallo");
-            return result;
-        }*/
-    };
-
-
-    const vorrang = new Vorrang([ ["schlafen", "studieren"], ["essen", "studieren"], ["studieren", "prüfen"], ["schlafen", "essen"] ]);
-
-    //console.log(proxy["dependencies"])
-
-    let myIterator = vorrang[Symbol.iterator]();
-    const proxy = new Proxy(myIterator,handler);
-
-   /* console.assert('{"value":"schlafen","done":false}' === JSON.stringify(proxy.next()));
-    console.assert('{"value":"essen","done":false}' === JSON.stringify(proxy.next()));
-    console.assert('{"value":"studieren","done":false}' === JSON.stringify(proxy.next()));
-    console.assert('{"value":"prüfen","done":false}' === JSON.stringify(proxy.next()));
-    console.assert('{"done":true}' === JSON.stringify(proxy.next()));
-
-    */
-
-
-
-    for( const x of proxy){
-        console.log(x);
-    }
-
 
 </script>
 
