@@ -48,4 +48,14 @@ a:active {
 .topics {
   display: inline-flex;
 }
+
+@media screen and (max-width: 800px) {
+  a:link,
+  a:visited {
+    padding: 14px 12px;
+    display: inline-block;
+    width: 5rem;
+    min-width: 200px;
+  }
+}
 </style>

@@ -100,4 +100,14 @@ export default {
   font-weight: bold;
   cursor: pointer;
 }
+
+@media screen and (max-width: 800px) {
+  .user {
+    display: none;
+  }
+  .nav-links {
+    display: none;
+  }
+}
+
 </style>
